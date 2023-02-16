@@ -8,13 +8,13 @@ La imagen `turtlebot2` se genera a partir del Dockerfile basico (con ubuntu, ROS
 ./build.sh
 ~~~
 
-#### Para crear un contenedor ejecutaremos:
+Para crear un contenedor ejecutaremos:
 ~~~
 ./run.sh <container name>
 ~~~
-El nombre del container es opcional. Si no introducimos ningun nombre su nombre será `turtlebot2_container`.
+El nombre del container es opcional. Si no introducimos ningun nombre *container name* será `turtlebot2_container`.
 
-#### Para entrar en el contenedor con una terminal (bash):
+## Para entrar en el contenedor con una terminal (bash):
 ~~~
 ./docker exec -it <container name> /bin/bash
 ~~~
