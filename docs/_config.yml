@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Hello! my name is Blanca and this is my internship blog in JdeRobots 
   where i'll be working on Unibotics page.
 twitter_username: username
-github_username: username
+github_username: Blancasr
 minimal_mistakes_skin: default
 search: true
 
@@ -81,7 +81,7 @@ footer:
       url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/Blancasr"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
