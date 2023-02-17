@@ -5,16 +5,16 @@ Esta carpeta contiene los DockerFiles necesarios para generar una imagen docker 
 ## Generar un contenedor
 La imagen `turtlebot2` se genera a partir del Dockerfile basico (con ubuntu, ROS2, Rviz y Gazebo) y el Dockerfile del Turtlebot2. Para conseguirlo ejecutar: 
 ~~~
-./build.sh
+./build_image.sh
 ~~~
 
 Para crear un contenedor ejecutaremos:
 ~~~
-./run.sh <container name>
+./run.sh <container name> <shared volume>
 ~~~
 El nombre del container es opcional. Si no introducimos ningun nombre *container name* será `turtlebot2_container`.
 
 ## Para entrar en el contenedor con una terminal (bash):
 ~~~
-./docker exec -it <container name> /bin/bash
+docker exec -it <container name> /bin/bash
 ~~~

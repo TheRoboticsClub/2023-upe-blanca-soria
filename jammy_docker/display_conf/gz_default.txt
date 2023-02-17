@@ -1,0 +1,5 @@
+echo [geometry] > ~/.gazebo/gui.ini && \
+echo x=0 >> ~/.gazebo/gui.ini && \
+echo y=0 >> ~/.gazebo/gui.ini && \
+echo width=100 >> ~/.gazebo/gui.ini && \
+echo height=50 >> ~/.gazebo/gui.ini
