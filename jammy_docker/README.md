@@ -40,4 +40,21 @@ Además, si tenemos el turtlebot2 iniciado en cualquier mundo podremos visualiza
 DISPLAY=:3 ros2 run gui_pkg showgui
 ~~~
 
+### Ejemplo de ejecución
+
+desde el directorio jammy_docker en el host ejecutamos:
+~~~
+./build.sh
+./run.sh turtlebot2_container /ruta/a/directorio/de/trabajo
+~~~
+Una vez dentro del contenedor ejecutaremos los siguientes comandos:
+~~~
+/start_4windows.sh
+/start_console.sh
+DISPLAY=:3 ros2 run gui_pkg showgui &
+./empty_world_turtlebot.sh
+~~~
+Todo esto generará en windows.html:
+
+
 
