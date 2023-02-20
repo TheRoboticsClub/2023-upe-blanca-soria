@@ -56,5 +56,6 @@ DISPLAY=:3 ros2 run gui_pkg showgui &
 ~~~
 Todo esto generará en windows.html:
 
+![execution_example](https://user-images.githubusercontent.com/79047431/220099141-5eddb454-dd39-46e8-a61a-725501a8d75b.png)
 
 
