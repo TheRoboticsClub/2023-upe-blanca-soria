@@ -18,16 +18,8 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(rclcpy REQUIRED)
-find_package(sensor_msgs REQUIRED)
 find_package(urdf REQUIRED)
 find_package(xacro REQUIRED)
-
-set(dependencies
-    rclcpp
-    rospy
-    sensor_msgs
-)
 
 install(DIRECTORY urdf launch
   DESTINATION share/${PROJECT_NAME})

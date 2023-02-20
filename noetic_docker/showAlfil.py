@@ -19,5 +19,3 @@ cv2.namedWindow(winname)        # Create a named window
 cv2.moveWindow(winname, 0,0)
 
 cv2.imshow(winname,im)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
