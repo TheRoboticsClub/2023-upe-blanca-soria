@@ -23,17 +23,17 @@ docker exec -it <container name> /bin/bash
 Una vez ejecutamos *run.sh* se nos abrirá una terminal dentro del contenedor. Nuestro directorio de trabajo actual es el workspace de ros2 humble con los respectivos directorios rcs, install build y logs. 
 
 Para poder ver las salidas gráficas de nuestro docker tenemos en el directorio `/` varios scripts; 
-- Para iniciar un xserver, servidor vnc y cliente noVNC podemos usar `/start.sh` indicando los puertos y displays especificos ó `start_4windows.sh` que inicia los 4 displays que estan ya configurados en la página windows.html de https://github.com/TheRoboticsClub/2023-upe-blanca-soria/tree/main/frontend :
+- Para iniciar un xserver, servidor vnc y cliente noVNC podemos usar `/start.sh` indicando los puertos y displays especificos ó `/start_4windows.sh` que inicia los 4 displays que estan ya configurados en la página windows.html de https://github.com/TheRoboticsClub/2023-upe-blanca-soria/tree/main/frontend :
 ~~~
 /start_vnc.sh <display> <internal_port> <external_port>
 ~~~ 
 
-- El script `start_console.sh` inicia una consola en el display :2 y puerto 1108 
+- El script `/start_console.sh` inicia una consola en el display :2 y puerto 1108 
 
-- El script `kill_all.sh` mata todos los procesos de gazebo, rviz servidores x y servicios vnc.
+- El script `/kill_all.sh` mata todos los procesos de gazebo, rviz servidores x y servicios vnc.
 
 
-Dentro del workspace tenemos un script `empty_world_turtlebot.sh` que inicia un servidor y cliente de gazebo, rviz2 y spawnea el turtlebot2 dentro de este mundo vacio. 
+Dentro del workspace tenemos un script `/home/turtlebot2_ws/empty_world_turtlebot.sh` que inicia un servidor y cliente de gazebo, rviz2 y spawnea el turtlebot2 dentro de este mundo vacio. 
 
 Además, si tenemos el turtlebot2 iniciado en cualquier mundo podremos visualizar su cámara en la ventana GUI ejecutando:
 ~~~
