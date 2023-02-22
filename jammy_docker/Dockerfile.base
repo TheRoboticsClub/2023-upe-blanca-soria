@@ -77,6 +77,7 @@ RUN python3.10 -m pip install websockets asyncio
 
 # pip install dependencies
 RUN pip install pylint
+RUN pip install opencv-python
 
 # Install VNC
 # Xorg segfault error mitigation
