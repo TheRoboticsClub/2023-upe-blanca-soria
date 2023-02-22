@@ -1,6 +1,6 @@
 
 Instructions to create a workspace before executing ros;
-    (this includes start_all.sh)
+    (this has to be made before executing start_all.sh)
 
 mkdir ~/ws 
 mkdir ~/ws/src 

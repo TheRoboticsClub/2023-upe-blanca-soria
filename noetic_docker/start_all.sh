@@ -8,7 +8,7 @@ usage(){
 
 # $1 = display, $2 = internal port , $3 = external port
 start_vnc_service(){
-    # xserver:
+    cd /
     /usr/bin/Xorg -noreset +extension GLX +extension RANDR +extension RENDER -logfile ./xdummy.log -config ./xorg.conf :$1 &
     sleep 1
     ## lanzar servidor vnc
@@ -53,5 +53,5 @@ DISPLAY=:2 rviz &
 
 # lanzar gui:
 start_vnc_service 3 5903 1905
-DISPLAY=:3 python3 home/shared_dir/showAlfil.py &# $width $height
+DISPLAY=:3 python3 /home/shared_dir/showAlfil.py & # $width $height
 
