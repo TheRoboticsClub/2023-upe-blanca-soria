@@ -18,6 +18,7 @@ email:
 description: >- # this means to ignore newlines until "baseurl:"
   Hello! my name is Blanca and this is my internship blog in JdeRobots 
   where i'll be working on Unibotics page.
+twitter_username: username
 github_username: Blancasr
 minimal_mistakes_skin: default
 search: true
@@ -58,17 +59,19 @@ plugins:
 author:
   name   : "Blanca Soria Rubio"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Hello! my name is Blanca and this is my internship blog in JdeRobots"
+  bio    : "Hello! my name is Blanca and this is my internship blog in JdeRobots. Im a student from Universidad Rey Juan Carlos finishing my Software Robotics Engeneering degree"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Blancasr"
+
 
 footer:
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Blancasr"
+
 
 defaults:
   # _posts
