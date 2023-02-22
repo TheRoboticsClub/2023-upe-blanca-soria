@@ -15,8 +15,9 @@ Para ello inicialmente he estado trabajando en una imagen docker base en la que 
 La intención ha sido poder ejecutar un programa en ROS2 en frío dentro del docker, pudiendo visualizarlo en la página windows.html. Para ello he copiado de mis compañeros los directorios que contienen los mundos de gazebo, modelos y ejecutables del robot Turtlebot2. Con ellos ha sido sencillo ejecutar un mundo vacío con el turtlebot, además del rviz con el mismo y una consola. He añadido un paquete ROS2 en python para poder ejecutar un nodo sencillo que muestre un GUI en el 4º visor. Este nodo simplemente se subscribe a la cámara del turtlebot y muestra en este 4º visor lo que el robot está viendo:
 
 <p align="center">
-<iframe width="560" height="315" src="https://youtu.be/tIk096Ulmyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtu.be/tIk096Ulmyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </p>
+
 
 En el video se puede apreciar que hay que mejorar el tamaño del servidor/cliente VNC para que las ventanas se ajusten a los visores, pero es una idea general y se ve que puede funcionar.
 

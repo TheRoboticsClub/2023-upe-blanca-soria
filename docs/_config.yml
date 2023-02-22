@@ -18,7 +18,6 @@ email:
 description: >- # this means to ignore newlines until "baseurl:"
   Hello! my name is Blanca and this is my internship blog in JdeRobots 
   where i'll be working on Unibotics page.
-twitter_username: username
 github_username: Blancasr
 minimal_mistakes_skin: default
 search: true
@@ -57,34 +56,19 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "First Lastname"
+  name   : "Blanca Soria Rubio"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Hey que pasa"
+  bio    : "Hello! my name is Blanca and this is my internship blog in JdeRobots"
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Blancasr"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Blancasr"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
 
 defaults:
   # _posts
