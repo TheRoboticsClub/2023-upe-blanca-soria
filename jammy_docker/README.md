@@ -1,9 +1,9 @@
-# DOCKER CON TURTLEBOT2
+# DOCKER CON RAM
 
-Esta carpeta contiene los DockerFiles necesarios para generar una imagen docker con Ubuntu 22.04, ROS2 Humble, Rviz2, Gazebo 11 y todas las dependencias necesarias para simular el robot Turtlebot2.
+Esta carpeta contiene los DockerFiles necesarios para generar una imagen docker con Ubuntu 22.04, ROS2 Humble, Rviz2, Gazebo 11 y lo necesario para ejecutar un docker que sea capaz de hacer una comunicacion sencilla entre el docker y un servidor http como el que podemos ejecutar dentro de `/simple_connection`.
 
 ## Generar un contenedor
-La imagen `turtlebot2` se genera a partir del Dockerfile basico (con ubuntu, ROS2, Rviz y Gazebo) y el Dockerfile del Turtlebot2. Para conseguirlo ejecutar: 
+La imagen `new_ram` se genera a partir del Dockerfile basico (con ubuntu, ROS2, Rviz y Gazebo) y el Dockerfile del nuevo RAM. Para conseguirlo ejecutar: 
 ~~~
 ./build_image.sh
 ~~~
@@ -12,7 +12,7 @@ Para crear un contenedor ejecutaremos:
 ~~~
 ./run.sh <container name> <shared volume>
 ~~~
-El nombre del container es opcional al igual que el volumen. Si no introducimos ningun nombre *container name* será `turtlebot2_container`. Si introducimos una ruta **absoluta** como segunda opcion *shared volume* se creará una carpeta compartida entre el host y el contenedor.
+El nombre del container es opcional al igual que el volumen. Si no introducimos ningun nombre *container name* será `dockerRam_container`. Si introducimos una ruta **absoluta** como segunda opcion *shared volume* se creará una carpeta compartida entre el host y el contenedor.
 
 ## Para entrar en el contenedor con una terminal (bash):
 ~~~
@@ -33,29 +33,17 @@ Para poder ver las salidas gráficas de nuestro docker tenemos en el directorio 
 - El script `/kill_all.sh` mata todos los procesos de gazebo, rviz servidores x y servicios vnc.
 
 
-Dentro del workspace tenemos un script `/home/turtlebot2_ws/empty_world_turtlebot.sh` que inicia un servidor y cliente de gazebo, rviz2 y spawnea el turtlebot2 dentro de este mundo vacio. 
-
-Además, si tenemos el turtlebot2 iniciado en cualquier mundo podremos visualizar su cámara en la ventana GUI ejecutando:
-~~~
-DISPLAY=:3 ros2 run gui_pkg showgui
-~~~
-
 ### Ejemplo de ejecución
 
 desde el directorio jammy_docker en el host ejecutamos:
 ~~~
 ./build.sh
-./run.sh turtlebot2_container /ruta/a/directorio/de/trabajo
+./run.sh ram_container /ruta/a/directorio/de/trabajo
 ~~~
 Una vez dentro del contenedor ejecutaremos los siguientes comandos:
 ~~~
 /start_4windows.sh
 /start_console.sh
-DISPLAY=:3 ros2 run gui_pkg showgui &
-./empty_world_turtlebot.sh
 ~~~
-Todo esto generará en windows.html:
-
-![execution_example](https://user-images.githubusercontent.com/79047431/220099141-5eddb454-dd39-46e8-a61a-725501a8d75b.png)
 
 

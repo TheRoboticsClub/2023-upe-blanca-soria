@@ -1,0 +1,43 @@
+{
+    "application": {
+      "type": "python",
+      "entry_point": "$EXERCISE_FOLDER/web-template/entry_point/exercise.py",
+      "params": {"circuit": ""}
+  
+    },
+    "launch": {
+      "0": {
+        "type": "module",
+        "module": "ros_api",
+        "resource_folders": [
+          "$EXERCISE_FOLDER/web-template/launch"
+        ],
+        "model_folders": [
+          "$CUSTOM_ROBOTS_FOLDER/roomba_robot/models"
+        ],
+        "plugin_folders": [
+        ],
+        "parameters": [],
+        "launch_file": "$EXERCISE_FOLDER/web-template/launch/vacuum_cleaner.launch"
+      },
+       "1": {
+         "type": "module",
+        "module": "console",
+        "display": ":1",
+        "internal_port": 5901,
+        "external_port": 1108,
+        "height": "300",
+        "width": "500"
+      },
+         "2": {
+         "type": "module",
+        "module": "gazebo_view",
+        "display": ":0",
+        "internal_port": 5900,
+        "external_port": 6080,
+        "height": "540",
+        "width": "960"
+      }
+    },
+    "exercise_id": "follow_line_newmanager"
+  }

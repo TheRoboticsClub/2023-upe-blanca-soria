@@ -1,20 +1,28 @@
-#!/usr/bin/env python
-
+from __future__ import annotations
 import asyncio
 import json
-import websockets
-from websockets.server import WebSocketServerProtocol
-from src.comms.consumer_message import ManagerConsumerMessage, ManagerConsumerMessageException
-from src.manager.manager import Manager
 from uuid import uuid4
 
-class SimpleConsumer:
+import websockets
+from websockets.server import WebSocketServerProtocol
+
+from src.comms.consumer_message import ManagerConsumerMessage, ManagerConsumerMessageException
+# from src.ram_logging.log_manager import LogManager
+from src.manager.manager import Manager
+
+# logger = LogManager.logger
+
+class ManagerConsumer:
+    """
+    Robotics Academy websocket consumer
+    """
 
     def __init__(self, host, port):
-        from src.manager.manager import Manager
+        
+
 
         """
-        Initializes a new SimpleConsumer
+        Initializes a new ManagerConsumer
         @param host: host for connections, '0.0.0.0' to bind all interfaces
         @param port: port for connections
         """
@@ -31,35 +39,23 @@ class SimpleConsumer:
         """
         await websocket.close(1008, "This RADI server can't accept more than one connection")
 
-    def parse_msg(self,msg):
-
-        if (type(msg)== bytes):
-            data = msg.decode('utf-8')
-            print("cmd: ","load")
-            print("data: ",data)
-        else:
-            event = json.loads(msg)
-            cmd = event["cmd"]
-            data = event["data"]
-            print("cmd: ",cmd)
-            print("data: ",None)
-
-        self.msg_id = self.msg_id + 1
-        id = str(self.msg_id)
-
-        return id, cmd, data
-
     async def handler(self, websocket: WebSocketServerProtocol):
-
-        # save websocket as self.client if there is not clietn already connected
-        if (self.client is not None and websocket != self.client):
+        """
+        Handles connection
+        @param websocket: websocket
+        """
+        if self.client is not None and websocket != self.client:
+            # LogManager.logger.debug("Client already connected, rejecting connection")
             print("Client already connected, rejecting connection")
             await self.reject_connection(websocket)
         else:
+            # self.client gets reassigned every time, but code is more clear
+            # TODO: Just review this block of code
+            print("Client succesfully connected")
             self.client = websocket
 
-        # if client has disconnected reset manager and stablish self.client as None
-        if (self.client and self.client.closed):
+        if self.client and self.client.closed:
+            # LogManager.logger.debug("Client disconnected, machine state reset")
             print("Client disconnected, machine state reset")
             self.manager.reset()
             self.client = None
@@ -69,20 +65,42 @@ class SimpleConsumer:
             try:
                 s = json.loads(websocket_message)
                 message = ManagerConsumerMessage(**s)
+                print(message.command)
+
+                if (message.data != None):
+                    print("\n\t","received from webserver: ",message.data)
+
                 await self.manager.trigger(message.command, data=message.data or None)
-                
                 response = {"message": f"Exercise state changed to {self.manager.state}"}
                 await websocket.send(str(message.response(response)))
 
-            except:
-            
+            except ManagerConsumerMessageException as e:
+                await websocket.send(str(e))
+            except Exception as e:
+                if message is None:
+                    ex = ManagerConsumerMessageException(message, str(e))
+                else:
+                    ex = ManagerConsumerMessageException(id=str(uuid4()), message=str(e))
+                await websocket.send(str(ex))
+
+    async def send_message(self, message_data):
+        if self.client is not None and self.server is not None:
+            message = ManagerConsumerMessage(id=str(uuid4()), command="state-changed", data=message_data)
+            await self.client.send(str(message))
+
+    def start(self):
+        """
+        Starts the consumer and listens for connections
+        """
+        self.server = websockets.serve(self.handler, self.host, self.port)
+        # LogManager.logger.debug(f"Websocket server listening in {self.host}:{self.port}")
+        print(f"Websocket server listening in {self.host}:{self.port}")
+        asyncio.get_event_loop().run_until_complete(self.server)
+        asyncio.get_event_loop().run_forever()
 
 
+if __name__ == '__main__':
+    consumer = ManagerConsumer('0.0.0.0', 7163)
+    consumer.start()
 
-
-async def main():
-    async with websockets.serve(handler, "", 8001):
-        await asyncio.Future()  # run forever
-    
-if __name__ == "__main__":
-    asyncio.run(main())
+# holaaa

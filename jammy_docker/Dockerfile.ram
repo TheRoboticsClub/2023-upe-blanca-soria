@@ -1,0 +1,60 @@
+FROM humble_base
+
+# Turtlebot2 simulated and hospital world
+RUN mkdir -p /home/ws/src
+COPY ./turtlebot2 /home/ws/src/
+COPY ./worlds /home/ws/src/
+COPY ./display_conf /home/.display_conf
+
+# simple_connection 
+COPY ./simple_connection /home
+RUN pip install transitions && pip install pydantic
+
+# copy scripts for vnc displays
+COPY ./scripts/start_vnc.sh /
+COPY ./scripts/kill_all.sh /
+COPY ./scripts/start_4windows.sh /
+COPY ./scripts/start_console.sh /
+RUN chmod +x /start_vnc.sh /kill_all.sh /start_console.sh /start_4windows.sh
+
+# configure setup.bash
+RUN echo 'source /home/turtlebot2_ws/install/setup.bash' >> ~/.bashrc
+RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/turtlebot2_ws/src/amazon_hospital/models' >> ~/.bashrc
+RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/turtlebot2_ws/src/amazon_hospital/fuel_models' >> ~/.bashrc
+RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/turtlebot2_ws/src/amazon_hospital/hospital_world/models' >> ~/.bashrc
+RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
+
+# copy RoboticsAcademy repository
+RUN cd /  && git clone https://github.com/JdeRobot/RoboticsAcademy.git -b master
+
+# compile workspace
+WORKDIR /home/ws
+RUN sudo rosdep fix-permissions && rosdep update
+RUN rosdep install --from-paths src --ignore-src -r -y
+RUN colcon build --symlink-install
+
+# http server
+EXPOSE 8000
+
+# Manager websocket
+EXPOSE 7163
+
+# Code websocket
+EXPOSE 1905
+EXPOSE 1904
+
+# GUI websockets
+EXPOSE 2303
+EXPOSE 2304
+
+# noVNC Console
+EXPOSE 1108
+# noVNC Gazebo
+EXPOSE 6080
+# noVNC Rviz
+EXPOSE 6081
+# noVNC GUI
+EXPOSE 6082
+
+# WebRtc
+EXPOSE 1831

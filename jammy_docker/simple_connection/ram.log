@@ -1,0 +1,2007 @@
+2023-02-28 12:44:16,240 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-02-28 12:44:16,241 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-02-28 12:44:28,671 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-02-28 12:44:28,671 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-02-28 12:44:28,671 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-02-28 12:44:28,672 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe6ffaf9f40>>'
+2023-02-28 12:48:32,503 [MainThread  ] [ERROR] (root)  "Can't trigger event stop from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event stop from state connected!"
+2023-02-28 12:49:19,830 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-02-28 12:49:19,830 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-02-28 12:49:19,830 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-02-28 12:49:19,831 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe6ffaf9f40>>'
+2023-02-28 12:50:05,912 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-02-28 12:50:05,925 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-02-28 12:50:06,827 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-02-28 12:50:06,827 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-02-28 12:50:06,827 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-02-28 12:50:06,828 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe6ffaf9f40>>'
+2023-02-28 12:50:16,353 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-02-28 12:50:16,354 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-02-28 12:50:16,354 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-02-28 12:50:16,355 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe6ffaf9f40>>'
+2023-02-28 12:50:39,425 [MainThread  ] [ERROR] (root)  Do not know event named ''.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: ''
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named ''.
+2023-02-28 12:51:39,342 [Thread-3    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-02-28 12:51:39,351 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-02-28 12:51:41,155 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-02-28 12:51:41,155 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-02-28 12:51:41,155 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-02-28 12:51:41,156 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe6ffaf9f40>>'
+2023-02-28 12:51:42,258 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-02-28 12:51:42,259 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-02-28 12:51:42,259 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-02-28 12:51:42,260 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe6ffaf9f40>>'
+2023-02-28 12:51:43,964 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-02-28 12:51:43,964 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-02-28 12:51:43,964 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-02-28 12:51:43,965 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe6ffaf9f40>>'
+2023-02-28 12:51:43,965 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 09:20:23,982 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:20:23,982 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:22:34,862 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:22:34,862 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:23:53,127 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:23:53,127 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:23:53,127 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:23:53,128 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f0745ee9f40>>'
+2023-03-01 09:24:13,590 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 09:24:13,590 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 09:24:13,590 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 09:24:13,591 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f0745ee9f40>>'
+2023-03-01 09:24:20,819 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:24:20,820 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:24:20,820 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:24:20,820 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f0745ee9f40>>'
+2023-03-01 09:24:20,821 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 09:24:25,038 [MainThread  ] [ERROR] (root)  string indices must be integers
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 95, in on_launch
+    self.exercise_id = configuration['exercise_id']
+TypeError: string indices must be integers
+2023-03-01 09:26:01,014 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 09:26:01,033 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 09:26:02,037 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 09:26:16,647 [Thread-3    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 09:26:16,684 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 09:26:17,487 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 09:26:26,906 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:26:26,906 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:26:29,914 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:26:29,915 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:26:29,915 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:26:29,917 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7f2982ef40>>'
+2023-03-01 09:26:37,643 [MainThread  ] [ERROR] (root)  string indices must be integers
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 95, in on_launch
+    self.exercise_id = configuration['exercise_id']
+TypeError: string indices must be integers
+2023-03-01 09:41:16,874 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:41:16,874 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:41:25,594 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:41:25,594 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:41:25,595 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:41:25,596 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f6d2556df40>>'
+2023-03-01 09:41:29,107 [MainThread  ] [ERROR] (root)  string indices must be integers
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 95, in on_launch
+    self.exercise_id = configuration['exercise_id']
+TypeError: string indices must be integers
+2023-03-01 09:42:05,091 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:42:05,091 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:42:08,400 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:42:08,401 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:42:08,401 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:42:08,402 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f31119bff40>>'
+2023-03-01 09:42:09,906 [MainThread  ] [ERROR] (root)  string indices must be integers
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 95, in on_launch
+    self.exercise_id = configuration["exercise_id"]
+TypeError: string indices must be integers
+2023-03-01 09:42:35,263 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:42:35,263 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:42:38,974 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:42:38,975 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:42:38,975 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:42:38,976 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f4df938ef40>>'
+2023-03-01 09:42:39,979 [MainThread  ] [ERROR] (root)  string indices must be integers
+Traceback (most recent call last):
+  File "manager.py", line 234, in start
+    self.process_messsage(message)
+  File "manager.py", line 193, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 96, in on_launch
+    self.exercise_id = configuration["exercise_id"]
+TypeError: string indices must be integers
+2023-03-01 09:44:04,173 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 09:44:04,179 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 234, in start
+    self.process_messsage(message)
+  File "manager.py", line 193, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 09:44:12,401 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 234, in start
+    self.process_messsage(message)
+  File "manager.py", line 193, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 09:44:18,851 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:44:18,851 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:44:23,170 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:44:23,171 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:44:23,171 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:44:23,172 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc905475f40>>'
+2023-03-01 09:44:25,482 [MainThread  ] [ERROR] (root)  string indices must be integers
+Traceback (most recent call last):
+  File "manager.py", line 234, in start
+    self.process_messsage(message)
+  File "manager.py", line 193, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 96, in on_launch
+    self.exercise_id = configuration["exercise_id"]
+TypeError: string indices must be integers
+2023-03-01 09:45:59,074 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:45:59,074 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:46:03,184 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:46:03,185 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:46:03,185 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:46:03,186 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7b69165f40>>'
+2023-03-01 09:46:04,089 [MainThread  ] [ERROR] (root)  string indices must be integers
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 95, in on_launch
+    self.exercise_id = configuration['exercise_id']
+TypeError: string indices must be integers
+2023-03-01 09:47:38,865 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:47:38,866 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:47:42,776 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:47:42,776 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:47:42,776 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:47:42,777 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc41e8dcf40>>'
+2023-03-01 09:47:44,283 [MainThread  ] [ERROR] (root)  'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "manager.py", line 233, in start
+    self.process_messsage(message)
+  File "manager.py", line 192, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 105, in on_launch
+    application_configuration = configuration.get('application', None)
+AttributeError: 'str' object has no attribute 'get'
+2023-03-01 09:48:42,095 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:48:42,095 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:48:45,004 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:48:45,004 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:48:45,005 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:48:45,006 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f60ce6caf40>>'
+2023-03-01 09:48:45,810 [MainThread  ] [ERROR] (root)  'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "manager.py", line 234, in start
+    self.process_messsage(message)
+  File "manager.py", line 193, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 106, in on_launch
+    application_configuration = configuration.get('application', None)
+AttributeError: 'str' object has no attribute 'get'
+2023-03-01 09:49:44,200 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:49:44,200 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:49:46,605 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:49:46,606 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:49:46,606 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:49:46,606 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f6b9c18bf40>>'
+2023-03-01 09:49:47,712 [MainThread  ] [ERROR] (root)  'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "manager.py", line 234, in start
+    self.process_messsage(message)
+  File "manager.py", line 193, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 106, in on_launch
+    application_configuration = configuration.get('application', None)
+AttributeError: 'str' object has no attribute 'get'
+2023-03-01 09:52:41,642 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:52:41,642 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:52:44,850 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:52:44,850 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:52:44,850 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:52:44,851 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fd54475df40>>'
+2023-03-01 09:52:46,056 [MainThread  ] [ERROR] (root)  'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 108, in on_launch
+    application_configuration = configuration.get('application', None)
+AttributeError: 'str' object has no attribute 'get'
+2023-03-01 09:53:44,273 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:53:44,274 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:53:47,785 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:53:47,785 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:53:47,786 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:53:47,787 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f3e81478f40>>'
+2023-03-01 09:53:49,293 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 09:53:49,294 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 09:53:49,294 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 09:53:49,294 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 09:53:49,295 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f3e81478f40>>'
+2023-03-01 09:54:18,793 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:54:18,793 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:54:21,399 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:54:21,400 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:54:21,400 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:54:21,401 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f022959df40>>'
+2023-03-01 09:54:24,611 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 09:54:24,612 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 09:54:24,612 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 09:54:24,612 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 09:54:24,612 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f022959df40>>'
+2023-03-01 09:54:33,182 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 09:54:33,243 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 09:54:38,657 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 09:54:40,675 [Thread-3    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 09:54:40,762 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 09:54:41,465 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 09:54:46,435 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:54:46,435 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:54:49,846 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:54:49,847 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:54:49,847 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:54:49,848 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f1960676f40>>'
+2023-03-01 09:54:51,754 [MainThread  ] [ERROR] (root)  'exercise_id'
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 98, in on_launch
+    self.exercise_id = configuration['exercise_id'] #"follow_line_newmanager"
+KeyError: 'exercise_id'
+2023-03-01 09:55:13,885 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 09:55:13,924 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 09:55:14,828 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 09:59:35,750 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 09:59:35,750 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 09:59:39,359 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 09:59:39,359 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 09:59:39,360 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 09:59:39,360 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc5c9a07f40>>'
+2023-03-01 09:59:42,368 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 09:59:42,368 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 09:59:42,368 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 09:59:42,368 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 09:59:42,369 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc5c9a07f40>>'
+2023-03-01 10:00:57,522 [MainThread  ] [ERROR] (root)  Do not know event named 'termiante'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'termiante'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'termiante'.
+2023-03-01 10:01:25,076 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:01:25,103 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:01:26,107 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:01:30,031 [Thread-3    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:01:30,122 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:01:30,926 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:01:36,945 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 10:01:36,946 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:01:36,946 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 10:01:36,946 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc5c9a07f40>>'
+2023-03-01 10:01:42,264 [MainThread  ] [ERROR] (root)  "Can't trigger event launch from state idle!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event launch from state idle!"
+2023-03-01 10:01:45,976 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:01:45,976 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:01:45,976 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:01:45,977 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc5c9a07f40>>'
+2023-03-01 10:01:45,978 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 10:01:52,204 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:01:52,204 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:01:52,204 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:01:52,204 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:01:52,205 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc5c9a07f40>>'
+2023-03-01 10:01:56,424 [MainThread  ] [ERROR] (root)  Do not know event named 'termiante'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'termiante'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'termiante'.
+2023-03-01 10:02:02,068 [Thread-4    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:02:02,144 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:02:03,148 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:02:21,940 [Thread-5    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:02:21,999 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:02:22,604 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:02:24,922 [Thread-6    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:02:25,012 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:02:36,944 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:02:42,860 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 10:02:42,861 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:02:42,861 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 10:02:42,862 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc5c9a07f40>>'
+2023-03-01 10:02:46,975 [MainThread  ] [ERROR] (root)  "Can't trigger event launch from state idle!"
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event launch from state idle!"
+2023-03-01 10:02:49,885 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:02:49,885 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:02:49,886 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:02:49,886 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fc5c9a07f40>>'
+2023-03-01 10:02:52,093 [MainThread  ] [ERROR] (root)  the JSON object must be str, bytes or bytearray, not dict
+Traceback (most recent call last):
+  File "manager.py", line 236, in start
+    self.process_messsage(message)
+  File "manager.py", line 195, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 95, in on_launch
+    configuration = json.loads(configuration)
+  File "/usr/lib/python3.8/json/__init__.py", line 341, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not dict
+2023-03-01 10:04:11,733 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:04:11,733 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:04:20,961 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:04:20,963 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:04:20,963 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:04:20,966 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f9798c75f40>>'
+2023-03-01 10:04:25,080 [MainThread  ] [ERROR] (root)  the JSON object must be str, bytes or bytearray, not dict
+Traceback (most recent call last):
+  File "manager.py", line 238, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 96, in on_launch
+    configuration = json.loads(configuration)
+  File "/usr/lib/python3.8/json/__init__.py", line 341, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not dict
+2023-03-01 10:04:56,634 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:04:56,635 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:05:58,619 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:05:58,619 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:05:58,620 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:05:58,620 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe758217f40>>'
+2023-03-01 10:06:00,324 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:06:00,324 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:06:00,325 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:06:00,325 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:06:00,326 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe758217f40>>'
+2023-03-01 10:06:23,978 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_terminate'
+2023-03-01 10:06:23,978 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:06:23,978 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:06:23,978 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:06:23,979 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe758217f40>>'
+2023-03-01 10:06:29,298 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:06:29,298 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:06:29,298 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:06:29,298 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:06:29,299 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe758217f40>>'
+2023-03-01 10:06:31,806 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 10:06:31,806 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:06:31,806 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 10:06:31,807 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe758217f40>>'
+2023-03-01 10:06:34,413 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:06:34,414 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:06:34,414 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:06:34,414 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe758217f40>>'
+2023-03-01 10:06:36,320 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:06:36,320 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:06:36,320 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:06:36,321 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:06:36,321 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fe758217f40>>'
+2023-03-01 10:08:57,481 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:08:57,481 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:09:00,888 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:09:00,888 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:09:00,889 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:09:00,890 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7f4e414f40>>'
+2023-03-01 10:09:02,694 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:09:02,694 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:09:02,694 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:09:02,694 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:09:02,695 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7f4e414f40>>'
+2023-03-01 10:10:48,997 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:10:48,997 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:10:52,204 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:10:52,204 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:10:52,204 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:10:52,204 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fddce1c1f40>>'
+2023-03-01 10:10:54,111 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:10:54,111 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:10:54,112 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:10:54,112 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:10:54,112 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fddce1c1f40>>'
+2023-03-01 10:11:51,031 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:11:51,031 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:11:55,039 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:11:55,039 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:11:55,039 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:11:55,039 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f0fa7488f40>>'
+2023-03-01 10:11:56,643 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:11:56,643 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:11:56,643 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:11:56,643 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:11:56,644 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f0fa7488f40>>'
+2023-03-01 10:14:26,238 [MainThread  ] [ERROR] (root)  local variable 'errors' referenced before assignment
+Traceback (most recent call last):
+  File "manager.py", line 178, in load_code
+    errors = self.linter.evaluate_code(message_data['code'])
+TypeError: string indices must be integers
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 238, in start
+    self.process_messsage(message)
+  File "manager.py", line 196, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 189, in load_code
+    self.consumer.send_message({'linter': errors}, command="linter")
+UnboundLocalError: local variable 'errors' referenced before assignment
+2023-03-01 10:22:30,249 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:22:30,249 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:22:34,057 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:22:34,058 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:22:34,058 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:22:34,058 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f5abc660f40>>'
+2023-03-01 10:22:37,766 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:22:37,766 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:22:37,767 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:22:37,767 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:22:37,767 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f5abc660f40>>'
+2023-03-01 10:23:06,633 [MainThread  ] [ERROR] (root)  local variable 'errors' referenced before assignment
+Traceback (most recent call last):
+  File "manager.py", line 179, in load_code
+    message_data = json.loads(message_data)
+  File "/usr/lib/python3.8/json/__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.8/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.8/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Invalid control character at: line 2 column 33 (char 34)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 242, in start
+    self.process_messsage(message)
+  File "manager.py", line 200, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 193, in load_code
+    self.consumer.send_message({'linter': errors}, command="linter")
+UnboundLocalError: local variable 'errors' referenced before assignment
+2023-03-01 10:24:27,201 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:24:27,201 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:24:31,709 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:24:31,709 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:24:31,709 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:24:31,710 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fd30c697f40>>'
+2023-03-01 10:24:33,113 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:24:33,114 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:24:33,114 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:24:33,114 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:24:33,115 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fd30c697f40>>'
+2023-03-01 10:24:41,506 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 10:24:41,506 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:24:41,506 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:24:41,506 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:24:41,507 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fd30c697f40>>'
+2023-03-01 10:26:39,401 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:26:39,401 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 10:26:39,401 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_run'
+2023-03-01 10:26:39,401 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fd30c697f40>>'
+2023-03-01 10:29:16,368 [MainThread  ] [ERROR] (root)  local variable 'errors' referenced before assignment
+Traceback (most recent call last):
+  File "manager.py", line 182, in load_code
+    #self.application.load_code(message_data['code'])
+KeyError: 'code'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 242, in start
+    ex = ManagerConsumerMessageException(id=message.id, message=str(e))
+  File "manager.py", line 200, in process_messsage
+    self.consumer.send_message(message.response(response))
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 416, in _trigger
+    self._process(event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 439, in _process
+    if trans.execute(event_data):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 273, in execute
+    event_data.machine.callbacks(itertools.chain(event_data.machine.before_state_change, self.before), event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1146, in callbacks
+    self.callback(func, event_data)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1165, in callback
+    func(event_data)
+  File "manager.py", line 193, in load_code
+    return self.__code_loaded
+UnboundLocalError: local variable 'errors' referenced before assignment
+2023-03-01 10:36:12,930 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:36:12,930 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:36:16,337 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:36:16,337 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:36:16,337 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:36:16,337 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f9815e41f40>>'
+2023-03-01 10:36:19,143 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:36:19,143 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:36:19,143 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:36:19,144 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:36:19,144 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f9815e41f40>>'
+2023-03-01 10:36:27,275 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 10:36:27,275 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:36:27,275 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:36:27,275 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:36:27,276 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f9815e41f40>>'
+2023-03-01 10:37:09,869 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:37:09,869 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:37:13,075 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:37:13,076 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:37:13,076 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:37:13,077 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:37:16,284 [MainThread  ] [ERROR] (root)  "Can't trigger event load from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event load from state connected!"
+2023-03-01 10:37:20,393 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:37:20,394 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:37:20,394 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:37:20,394 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:37:20,395 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:38:34,746 [MainThread  ] [ERROR] (root)  "Can't trigger event launch from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event launch from state ready!"
+2023-03-01 10:38:43,506 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:38:43,572 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:38:44,474 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:38:45,478 [MainThread  ] [ERROR] (root)  "Can't trigger event launch from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event launch from state ready!"
+2023-03-01 10:38:49,773 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 10:38:49,774 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:38:49,774 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:38:49,774 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:38:49,775 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:38:54,249 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 10:38:54,250 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:38:54,250 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:38:54,250 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:38:54,250 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:03,367 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 10:40:03,367 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:40:03,367 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:40:03,367 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:40:03,368 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:05,374 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:40:05,374 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 10:40:05,374 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_run'
+2023-03-01 10:40:05,375 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:10,624 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 10:40:10,624 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 10:40:10,625 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:40:10,625 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:40:10,625 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:14,435 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:40:14,435 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 10:40:14,435 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_run'
+2023-03-01 10:40:14,436 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:19,349 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_stop'
+2023-03-01 10:40:19,350 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 10:40:19,350 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:40:19,350 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:40:19,350 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:22,661 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:40:22,662 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 10:40:22,662 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_run'
+2023-03-01 10:40:22,663 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:27,374 [MainThread  ] [ERROR] (root)  "Can't trigger event resume from state running!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event resume from state running!"
+2023-03-01 10:40:39,114 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_pause'
+2023-03-01 10:40:39,115 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 10:40:39,115 [MainThread  ] [INFO ] (transitions.core)  Finished processing state paused enter callbacks.
+2023-03-01 10:40:39,115 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:46,943 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_resume'
+2023-03-01 10:40:46,943 [MainThread  ] [INFO ] (transitions.core)  Finished processing state paused exit callbacks.
+2023-03-01 10:40:46,943 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 10:40:46,944 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:40:52,560 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_pause'
+2023-03-01 10:40:52,561 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 10:40:52,561 [MainThread  ] [INFO ] (transitions.core)  Finished processing state paused enter callbacks.
+2023-03-01 10:40:52,561 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:00,286 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_stop'
+2023-03-01 10:41:00,287 [MainThread  ] [INFO ] (transitions.core)  Finished processing state paused exit callbacks.
+2023-03-01 10:41:00,287 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:41:00,287 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:41:00,287 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:03,699 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:41:03,699 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 10:41:03,699 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_run'
+2023-03-01 10:41:03,700 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:06,309 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_pause'
+2023-03-01 10:41:06,309 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 10:41:06,310 [MainThread  ] [INFO ] (transitions.core)  Finished processing state paused enter callbacks.
+2023-03-01 10:41:06,310 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:13,861 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 10:41:13,861 [MainThread  ] [INFO ] (transitions.core)  Finished processing state paused exit callbacks.
+2023-03-01 10:41:13,861 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:41:13,861 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:41:13,862 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:28,104 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:41:28,105 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 10:41:28,105 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_run'
+2023-03-01 10:41:28,105 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:30,111 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 10:41:30,112 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 10:41:30,112 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 10:41:30,113 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:32,118 [MainThread  ] [ERROR] (root)  "Can't trigger event launch from state idle!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event launch from state idle!"
+2023-03-01 10:41:37,735 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:41:37,736 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:41:37,736 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:41:37,737 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:39,745 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:41:39,746 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:41:39,746 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:41:39,746 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:41:39,747 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:43,158 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:41:43,158 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 10:41:43,158 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_run'
+2023-03-01 10:41:43,159 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:44,161 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 10:41:44,161 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 10:41:44,162 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 10:41:44,162 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:45,666 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:41:45,666 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:41:45,666 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:41:45,667 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:41:46,571 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:41:46,571 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:41:46,571 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:41:46,572 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:41:46,572 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa92d667f40>>'
+2023-03-01 10:49:28,515 [Thread-3    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:49:28,533 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:49:31,084 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 10:49:31,084 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 10:49:51,019 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 10:49:51,020 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:49:51,020 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:49:51,021 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7a30dc6f40>>'
+2023-03-01 10:50:03,747 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:50:03,747 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:50:03,748 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:50:03,748 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:50:03,749 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7a30dc6f40>>'
+2023-03-01 10:50:28,094 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:50:28,109 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:50:29,913 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:50:32,521 [MainThread  ] [ERROR] (root)  "Can't trigger event launch from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event launch from state ready!"
+2023-03-01 10:50:35,229 [MainThread  ] [ERROR] (root)  "Can't trigger event launch from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event launch from state ready!"
+2023-03-01 10:50:37,134 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:50:44,158 [MainThread  ] [ERROR] (root)  "Can't trigger event launch from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event launch from state ready!"
+2023-03-01 10:50:50,778 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_terminate'
+2023-03-01 10:50:50,778 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:50:50,779 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:50:50,779 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:50:50,779 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7a30dc6f40>>'
+2023-03-01 10:55:11,947 [Thread-3    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:55:11,951 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:55:12,753 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 10:55:15,962 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state connected!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state connected!"
+2023-03-01 10:55:20,978 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:55:20,979 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:55:20,979 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:55:20,979 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:55:20,979 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7a30dc6f40>>'
+2023-03-01 10:55:42,482 [Thread-4    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:55:42,546 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:55:43,248 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:55:46,357 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_terminate'
+2023-03-01 10:55:46,357 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:55:46,357 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:55:46,357 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:55:46,358 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7a30dc6f40>>'
+2023-03-01 10:55:52,579 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:55:52,579 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:55:52,579 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:55:52,579 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:55:52,580 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7a30dc6f40>>'
+2023-03-01 10:57:02,954 [Thread-5    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 10:57:03,047 [MainThread  ] [ERROR] (root)  Do not know event named 'reset'.
+Traceback (most recent call last):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 914, in _get_trigger
+    event = self.events[trigger_name]
+KeyError: 'reset'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 920, in _get_trigger
+    raise AttributeError("Do not know event named '%s'." % trigger_name)
+AttributeError: Do not know event named 'reset'.
+2023-03-01 10:57:04,050 [MainThread  ] [ERROR] (root)  "Can't trigger event connect from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event connect from state ready!"
+2023-03-01 10:57:08,060 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_terminate'
+2023-03-01 10:57:08,060 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 10:57:08,061 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 10:57:08,061 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 10:57:08,061 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7a30dc6f40>>'
+2023-03-01 10:57:11,975 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 10:57:11,975 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 10:57:11,976 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 10:57:11,976 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 10:57:11,976 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7a30dc6f40>>'
+2023-03-01 11:07:07,328 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 11:07:07,328 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 11:07:10,333 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:07:10,333 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:07:10,333 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:07:10,334 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:07:17,454 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:07:17,455 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:07:17,455 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:07:17,455 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:07:20,062 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:07:20,062 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:07:20,062 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:07:20,063 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:07:22,067 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:07:22,067 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:07:22,067 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:07:22,068 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:07:23,170 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:07:23,170 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:07:23,171 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:07:23,171 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:07:24,274 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 11:07:24,274 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:07:24,274 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:07:24,274 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:07:24,275 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:07:33,902 [MainThread  ] [ERROR] (root)  "Can't trigger event pause from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event pause from state ready!"
+2023-03-01 11:07:39,923 [MainThread  ] [ERROR] (root)  "Can't trigger event stop from state ready!"
+Traceback (most recent call last):
+  File "manager.py", line 239, in start
+    self.process_messsage(message)
+  File "manager.py", line 197, in process_messsage
+    self.trigger(message.command, data=message.data or None)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 922, in _get_trigger
+    return event.trigger(model, *args, **kwargs)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 402, in trigger
+    return self.machine._process(func)
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 1211, in _process
+    return trigger()
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 415, in _trigger
+    if self._is_valid_source(event_data.state):
+  File "/home/blanca/.local/lib/python3.8/site-packages/transitions/core.py", line 452, in _is_valid_source
+    raise MachineError(msg)
+transitions.core.MachineError: "Can't trigger event stop from state ready!"
+2023-03-01 11:07:41,227 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:07:41,227 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 11:07:41,227 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:07:41,227 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:07:41,929 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:07:41,929 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:07:41,930 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:07:41,930 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:07:43,334 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 11:07:43,334 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:07:43,334 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:07:43,334 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:07:43,335 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa2f6b4af40>>'
+2023-03-01 11:13:40,533 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 11:13:40,533 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 11:13:46,043 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:13:46,043 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:13:46,043 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:13:46,044 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f8581d1beb0>>'
+2023-03-01 11:13:50,655 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:13:50,656 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:13:50,656 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:13:50,656 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f8581d1beb0>>'
+2023-03-01 11:13:52,360 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:13:52,360 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:13:52,360 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:13:52,361 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f8581d1beb0>>'
+2023-03-01 11:13:53,666 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 11:13:53,666 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:13:53,667 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:13:53,667 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:13:53,667 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f8581d1beb0>>'
+2023-03-01 11:14:27,465 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 11:14:27,465 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 11:14:34,079 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:14:34,079 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:14:34,079 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:14:34,080 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:35,082 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:14:35,083 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:14:35,083 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:14:35,083 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:36,386 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:14:36,386 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:14:36,387 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:14:36,387 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:37,691 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 11:14:37,691 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:14:37,691 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:14:37,691 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:14:37,692 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:42,828 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 11:14:42,829 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 11:14:42,829 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:14:42,829 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:14:42,829 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:44,890 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'load_code'
+2023-03-01 11:14:44,890 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 11:14:44,890 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:14:44,890 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:14:44,891 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:46,294 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 11:14:46,294 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 11:14:46,295 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_run'
+2023-03-01 11:14:46,295 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:49,201 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_pause'
+2023-03-01 11:14:49,201 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 11:14:49,202 [MainThread  ] [INFO ] (transitions.core)  Finished processing state paused enter callbacks.
+2023-03-01 11:14:49,202 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:50,707 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_resume'
+2023-03-01 11:14:50,707 [MainThread  ] [INFO ] (transitions.core)  Finished processing state paused exit callbacks.
+2023-03-01 11:14:50,707 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running enter callbacks.
+2023-03-01 11:14:50,708 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:51,811 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_stop'
+2023-03-01 11:14:51,812 [MainThread  ] [INFO ] (transitions.core)  Finished processing state running exit callbacks.
+2023-03-01 11:14:51,812 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:14:51,812 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:14:51,812 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:56,021 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_terminate'
+2023-03-01 11:14:56,022 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 11:14:56,022 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:14:56,022 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:14:56,023 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:14:57,226 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:14:57,226 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:14:57,226 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:14:57,226 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f99ee7f4eb0>>'
+2023-03-01 11:19:05,796 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 11:19:05,797 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 11:19:08,602 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:19:08,603 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:19:08,603 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:19:08,603 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 11:19:16,624 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 11:19:16,624 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:19:16,624 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:19:16,624 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:19:16,625 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 11:19:17,632 [Thread-2    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 11:19:17,727 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:19:17,727 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready exit callbacks.
+2023-03-01 11:19:17,728 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:19:17,728 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 11:19:18,429 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:19:18,429 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:19:18,430 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:19:18,430 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 11:19:46,006 [Thread-3    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 11:19:46,106 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:19:46,106 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:19:46,106 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:19:46,106 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 11:19:47,008 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:19:47,008 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:19:47,009 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:19:47,009 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 11:19:52,366 [Thread-4    ] [INFO ] (websocket_server.websocket_server)  Client asked to close connection.
+2023-03-01 11:19:52,423 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_disconnect'
+2023-03-01 11:19:52,423 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:19:52,423 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle enter callbacks.
+2023-03-01 11:19:52,424 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 11:19:53,626 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 11:19:53,626 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 11:19:53,626 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 11:19:53,627 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 11:20:27,298 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_launch'
+2023-03-01 11:20:27,299 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected exit callbacks.
+2023-03-01 11:20:27,299 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_ready'
+2023-03-01 11:20:27,299 [MainThread  ] [INFO ] (transitions.core)  Finished processing state ready enter callbacks.
+2023-03-01 11:20:27,300 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7fa0760fdeb0>>'
+2023-03-01 12:02:39,247 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Listening on port 7163 for clients..
+2023-03-01 12:02:39,247 [MainThread  ] [INFO ] (websocket_server.websocket_server)  Starting WebsocketServer on thread Thread-1.
+2023-03-01 12:02:46,665 [MainThread  ] [INFO ] (transitions.core)  Finished processing state idle exit callbacks.
+2023-03-01 12:02:46,665 [MainThread  ] [INFO ] (transitions.core)  Executed callback 'on_enter_connected'
+2023-03-01 12:02:46,665 [MainThread  ] [INFO ] (transitions.core)  Finished processing state connected enter callbacks.
+2023-03-01 12:02:46,666 [MainThread  ] [INFO ] (transitions.core)  Executed callback '<bound method Manager.state_change of <__main__.Manager object at 0x7f7d9369cf10>>'

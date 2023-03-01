@@ -15,9 +15,11 @@ from src.comms.consumer_message import ManagerConsumerMessageException
 from src.libs.process_utils import get_class, get_class_from_file
 from src.manager.application.robotics_python_application_interface import IRoboticsPythonApplication
 from src.manager.launcher.launcher_engine import LauncherEngine
-from src.manager.vnc.console_view import Console_view
-from src.manager.vnc.gzb_view import Gzb_view
+#from src.manager.vnc.console_view import Console_view
+#from src.manager.vnc.gzb_view import Gzb_view
 from src.manager.lint.linter import Lint
+
+import json
 
 
 class Manager:
@@ -65,14 +67,14 @@ class Manager:
     def state_change(self, event):
 
         # LogManager.logger.info(f"State changed to {self.state}")
-        print(f"State changed to {self.state}")
+        print(f"\nState changed to {self.state}\n")
 
         if self.consumer is not None:
             self.consumer.send_message({'state': self.state}, command="state-changed")
 
     def update(self, data):
         #LogManager.logger.debug(f"Sending update to client")
-        print(f"Sending update to client")
+        print(f"\nSending update to client\n")
         if self.consumer is not None:
             self.consumer.send_message({'update': data}, command="update")
 
@@ -84,7 +86,7 @@ class Manager:
             # TODO: Prototype, review this callback
 
             # LogManager.logger.info(f"Manager: Launcher {name} died with code {code}")
-            print(f"Manager: Launcher {name} died with code {code}")
+            print(f"\nManager: Launcher {name} died with code {code}\n")
 
             if self.state != 'ready':
                 self.terminate()
@@ -94,33 +96,33 @@ class Manager:
         # generate exercise_folder environment variable
         self.exercise_id = configuration['exercise_id']
 
-        print("os.environ[EXERCISE_FOLDER]")
+        print("\nos.environ[EXERCISE_FOLDER]\n")
         #os.environ["EXERCISE_FOLDER"] = f"{os.environ.get('EXERCISES_STATIC_FILES')}/{self.exercise_id}"
         self.linter = Lint(self.exercise_id)
 
         # Check if application and launchers configuration is missing
         # TODO: Maybe encapsulate configuration as a data class with validation?
 
-        print("loading configuration of the application")
+        print("\nloading configuration of the application\n")
         application_configuration = configuration.get('application', None)
         if application_configuration is None:
             raise Exception("Application configuration missing")
 
         # check if launchers configuration is missing
-        print("loading configuration of launcher")
+        print("\nloading configuration of launcher\n")
         launchers_configuration = configuration.get('launch', None)
         if launchers_configuration is None:
             raise Exception("Launch configuration missing")
 
         # LogManager.logger.info(f"Launch transition started, configuration: {configuration}")
-        print(f"Launch transition started, configuration: {configuration}")
+        print(f"\nLaunch transition started, configuration: {configuration}\n")
 
         # configuration['terminated_callback'] = terminated_callback
-        print("starting LauncherEngine")
+        print("\nstarting LauncherEngine\n")
         # self.launcher = LauncherEngine(**configuration)
         # self.launcher.run()
 
-        print("starting views")
+        print("\nstarting views\n")
         # gzb_viewer = Gzb_view(":0", 5900, 6080)
         # console_viewer = Console_view(":1", 5901, 1108)
         # print('vnc started')
@@ -133,7 +135,7 @@ class Manager:
 
        
         # TODO: launch application
-        print("starting Application")
+        print("\nstarting Application\n")
         application_file = application_configuration['entry_point']
         params = application_configuration.get('params', None)
         #application_module = os.path.expandvars(application_file)
@@ -150,33 +152,34 @@ class Manager:
         try:
             # self.application.terminate()
             # self.launcher.terminate()
-            print("apllication and launcher terminated")
+            print("\napllication and launcher terminated\n")
         except Exception as e:
             #LogManager.logger.exception(f"Exception terminating instance")
-            print(f"Exception terminating instance")
+            print(f"\nException terminating instance\n")
             print(traceback.format_exc())
 
     def on_enter_connected(self, event):
         # LogManager.logger.info("Connect state entered")
-        print("Connect state entered")
+        print("\nConnect state entered\n")
 
     def on_enter_ready(self, event):
         configuration = event.kwargs.get('data', {})
 
         # LogManager.logger.info(f"Start state entered, configuration: {configuration}")
-        print(f"Start state entered, configuration: {configuration}")
+        print(f"\nStart state entered, configuration: {configuration}\n")
 
     def load_code(self, event):
         try:
             # LogManager.logger.info("Internal transition load_code executed")
-            print("Internal transition load_code executed")
+            print("\nInternal transition load_code executed\n")
 
             message_data = event.kwargs.get('data', {})
+            message_data = json.loads(message_data) # !!
             errors = self.linter.evaluate_code(message_data['code'])
 
             if errors is "":
                 #self.application.load_code(message_data['code'])
-                print(f"self.apllication.load_cose({message_data['code']})")
+                print(f"\nself.application.load_code({message_data['code']})\n")
                 self.__code_loaded = True
             else:
                 raise Exception
@@ -189,28 +192,35 @@ class Manager:
         return self.__code_loaded
 
     def process_messsage(self, message):
+        last_state = self.state
         self.trigger(message.command, data=message.data or None)
-        response = {"message": f"Exercise state changed to {self.state}"}
-        self.consumer.send_message(message.response(response))
+        if (last_state != self.state):
+            response = {"message": f"Exercise state changed to {self.state}"}
+            self.consumer.send_message(message.response(response))
+        else:
+            exception_msg = f"couldnt change from state {last_state} to {message.command}"
+            ex = ManagerConsumerMessageException(id=message.id, message=str(exception_msg))
+            self.consumer.send_message(ex)
+            print("\n",exception_msg,"\n")
 
     def on_run(self, event):
         # self.application.run()
-        print("on run")
+        print("\non run\n")
 
     def on_pause(self, msg):
         #self.application.pause()
-        print("on pause")
+        print("\non pause\n")
 
     def on_resume(self, msg):
         #self.application.resume()
-        print("on resume")
+        print("\non resume\n")
 
     def on_stop(self, msg):
         #self.application.stop()
-        print("on stop")
+        print("\non stop\n")
 
     def on_disconnect(self, event):
-        print("on disconnect")
+        print("\non disconnect\n")
         pass
 
     def start(self):
@@ -219,7 +229,7 @@ class Manager:
         RAM must be run in main thread to be able to handle signaling other processes, for instance ROS launcher.
         """
         # LogManager.logger.info(f"Starting RAM consumer in {self.consumer.server}:{self.consumer.port}")
-        print(f"Starting RAM consumer in {self.consumer.server}:{self.consumer.port}")
+        print(f"\nStarting RAM consumer in {self.consumer.server}:{self.consumer.port}\n")
        
         self.consumer.start()
         # TODO: change loop end condition
@@ -237,7 +247,8 @@ class Manager:
                 else:
                     ex = ManagerConsumerMessageException(id=str(uuid4()), message=str(e))
                 self.consumer.send_message(ex)
-                LogManager.logger.error(e, exc_info=True)
+                #LogManager.logger.error(e, exc_info=True)
+                print(ex)
                 
 
 if __name__ == "__main__":
