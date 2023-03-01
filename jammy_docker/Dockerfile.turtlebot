@@ -11,11 +11,11 @@ COPY ./scripts/start_vnc.sh /
 COPY ./scripts/kill_all.sh /
 COPY ./scripts/start_4windows.sh /
 COPY ./scripts/start_console.sh /
+RUN chmod +x /start_vnc.sh /kill_all.sh /start_console.sh /start_4windows.sh
 
 # copy execution files of exercises
 COPY ./scripts/empty_world_turtlebot.sh /home/turtlebot2_ws
-RUN chmod +x /start_vnc.sh /home/turtlebot2_ws/empty_world_turtlebot.sh \
-    /kill_all.sh /start_console.sh /start_4windows.sh
+RUN /home/turtlebot2_ws/empty_world_turtlebot.sh 
 
 # configure setup.bash
 RUN echo 'source /home/turtlebot2_ws/install/setup.bash' >> ~/.bashrc
