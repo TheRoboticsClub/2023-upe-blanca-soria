@@ -1,6 +1,11 @@
 //import * as log from "loglevel";
 //import { v4 as uuidv4 } from "uuid";
 
+var fileContent_loaded = false;
+var fileContent;
+var last_msg;
+var actual_id = 0;
+
 const CommsManager = (address) => {
     let websocket = null;
   
@@ -109,7 +114,8 @@ const CommsManager = (address) => {
       // Sending messages to remote manager
       return new Promise((resolve, reject) => {
         //const id = uuidv4();
-        const id = 4;
+        actual_id ++;
+        const id = actual_id;
   
         if (!websocket) {
           reject({
@@ -177,10 +183,6 @@ const CommsManager = (address) => {
       }
   
   })()
-  
-  var fileContent_loaded = false;
-  var fileContent;
-  var last_msg;
 
   window.addEventListener("DOMContentLoaded", () => {
     // Open the WebSocket connection and register event handlers.
@@ -197,6 +199,7 @@ const CommsManager = (address) => {
     button_pressed("btn_resume");
     button_pressed("btn_disc");
     button_pressed("btn_load");
+    button_pressed("views");
   });
 
   function received_msg(message) {
@@ -216,6 +219,7 @@ const CommsManager = (address) => {
           document.getElementById('btn_resume').style.display = 'none';
           document.getElementById('btn_disc').style.display = 'inline';
           document.getElementById('btn_load').style.display = 'inline';
+		  document.getElementById("file-selector").style.display = 'inline';
           break;
         case "terminate":
         case "connect":
@@ -229,6 +233,7 @@ const CommsManager = (address) => {
           document.getElementById('btn_resume').style.display = 'none';
           document.getElementById('btn_disc').style.display = 'inline';
           document.getElementById('btn_load').style.display = 'none';
+		  document.getElementById("file-selector").style.display = 'none';
             break;
         case "pause":
           // estoy en PAUSED
@@ -241,6 +246,7 @@ const CommsManager = (address) => {
           document.getElementById('btn_resume').style.display = 'inline';
           document.getElementById('btn_disc').style.display = 'inline';
           document.getElementById('btn_load').style.display = 'inline';
+		  document.getElementById("file-selector").style.display = 'inline';
             break;
         case "resume":
         case "run":
@@ -254,6 +260,7 @@ const CommsManager = (address) => {
           document.getElementById('btn_resume').style.display = 'none';
           document.getElementById('btn_disc').style.display = 'inline';
           document.getElementById('btn_load').style.display = 'inline';
+		  document.getElementById("file-selector").style.display = 'inline';
             break;
         case "disconnect":
           // esto en IDLE
@@ -266,6 +273,7 @@ const CommsManager = (address) => {
           document.getElementById('btn_resume').style.display = 'none';
           document.getElementById('btn_disc').style.display = 'none';
           document.getElementById('btn_load').style.display = 'none';
+		  document.getElementById("file-selector").style.display = 'none';
             break;
         default:
           document.getElementById('btn_launch').style.display = 'inline';
@@ -277,10 +285,33 @@ const CommsManager = (address) => {
           document.getElementById('btn_resume').style.display = 'inline';
           document.getElementById('btn_disc').style.display = 'inline';
           document.getElementById('btn_load').style.display = 'inline';
+		  document.getElementById("file-selector").style.display = 'inline';
       }
     }
     
   }
+
+  function loadPages(){
+	console.log("GZ")
+	var frame = $('#gz-vnc');
+	var url = 'http://127.0.0.1:6080/vnc.html?resize=remote&amp;autoconnect=true';
+    frame.attr('src',url).show();
+
+	console.log("CONSOLE")
+	frame = $('#console-vnc')
+	url = 'http://127.0.0.1:1108/vnc.html?resize=remote&amp;autoconnect=true'
+	frame.attr('src',url).show();
+
+	console.log("RVIZ")
+	frame = $('#rviz-vnc')
+	url = 'http://127.0.0.1:6081/vnc.html?resize=remote&amp;autoconnect=true'
+	frame.attr('src',url).show();
+
+	console.log("GUI")
+	frame = $('#gui-vnc')
+	url = 'http://127.0.0.1:6082/vnc.html?resize=remote&amp;autoconnect=true'
+	frame.attr('src',url).show();
+}
   
   function button_pressed(button) {
 
@@ -310,8 +341,13 @@ const CommsManager = (address) => {
             var comand = "connect"; 
             break;
         case "btn_load":
-              var comand = "load";
-              break;
+            var comand = "load";
+            break;
+        case "views":
+			document.getElementById(button).addEventListener("click",e=> {
+				console.log("views");
+				loadPages();})
+          return;
         default:
           return;
     }
@@ -320,7 +356,8 @@ const CommsManager = (address) => {
         if (comand === "launch") {
             fetch('./configuration.json')
                 .then((response) => response.json())
-                .then((json) => {console.log(json);
+                .then((json)=> {
+                    console.log(json);
                     console.log(comand);
                     window.RoboticsExerciseComponents.commsManager.send(comand,json);
                     last_msg = comand;

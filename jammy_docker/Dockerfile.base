@@ -70,14 +70,29 @@ RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pk
   && apt-get -y autoremove \
 	&& apt-get clean autoclean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN mkdir ~/.gazebo && touch ~/.gazebo/gui.ini
 
 # websocket server dependency
 RUN pip3 install websocket_server posix-ipc django djangorestframework==3.13.1 django-webpack-loader==1.5.0
 RUN python3.10 -m pip install websockets asyncio
 
 # pip install dependencies
-RUN pip install pylint
-RUN pip install opencv-python
+RUN pip install pylint transitions pydantic websocket-client opencv-python
+
+# install python3.8
+# RUN apt install build-essential checkinstall
+# RUN apt-get install -y libreadline-gplv2-dev 
+# RUN apt-get install -y libncursesw5-dev 
+# RUN apt-get install -y libssl-dev 
+# RUN apt-get install -y libsqlite3-dev 
+# RUN apt-get install -y tk-dev 
+# RUN apt-get install -y libgdbm-dev 
+# RUN apt-get install -y libc6-dev 
+# RUN apt-get install -y libbz2-dev 
+# RUN apt-get install -y libffi-dev 
+# RUN apt-get install -y zlib1g-dev
+# RUN cd /opt/ && wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz && cd Python-3.8.3 && ./configure --enable-optimizations \\
+#   && sudo make altinstall && 
 
 # Install VNC
 # Xorg segfault error mitigation
