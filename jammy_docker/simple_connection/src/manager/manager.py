@@ -119,24 +119,31 @@ class Manager:
         print(f"\nLaunch transition started, configuration: {configuration}\n")
 
         # configuration['terminated_callback'] = terminated_callback
-        print("\nstarting LauncherEngine\n")
         #self.launcher = LauncherEngine(**configuration)
         #self.launcher.run()
 
+        print("\nstarting VIEWS\n")
         gzb_viewer = Gzb_view(":0", 5900, 6080)
         console_viewer = Console_view(":1", 5901, 1108)
         rviz_viewer = Rviz_view(":2",5902,6081)
-        print('\nvnc started')
         time.sleep(2)
-
         console_viewer.start_console(1920, 1080)
-        print("\n> Console started")
-        gzb_viewer.start_gzserver(configuration["launch"]["0"]["launch_file"])
-        gzb_viewer.start_gzclient(configuration["launch"]["0"]["launch_file"], 1920, 1080)
-        print("\n> gazebo started")
+        
+        #gzb_viewer.start_gzserver(configuration["launch"]["0"]["launch_file"])
+        #gzb_viewer.start_gzclient(configuration["launch"]["0"]["launch_file"], 1920, 1080)
+
+        exercise_launch_cmd = f"DISPLAY=:0 ros2 launch {self.exercise_id} spawn_model.launch.py"
+        exercise_launch_thread = DockerThread(exercise_launch_cmd)
+        exercise_launch_thread.start()
+        print(f"\nstarted launch exercise: {self.exercise_id} thread\n")
+
+        gazebo_launch_cmd = "DISPLAY=:0 ros2 launch gazebo_ros gazebo.launch.py"
+        gazebo_thread = DockerThread(gazebo_launch_cmd)
+        gazebo_thread.start()
+        print("\nstarted launch gazebo thread\n")
+
         rviz_viewer.start_rviz()
-        print("\n> rviz started")
-       
+
         # TODO: launch application
         print("\nstarting Application\n")
         application_file = application_configuration['entry_point']
@@ -180,7 +187,7 @@ class Manager:
             message_data = json.loads(message_data) # !!
             errors = self.linter.evaluate_code(message_data['code'])
 
-            if (errors == ""):
+            if errors is "":
                 #self.application.load_code(message_data['code'])
                 print(f"\nself.application.load_code({message_data['code']})\n")
                 self.__code_loaded = True

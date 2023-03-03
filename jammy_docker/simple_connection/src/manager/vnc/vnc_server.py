@@ -6,12 +6,12 @@ from src.manager.vnc.docker_thread import DockerThread
 class Vnc_server:
     def start_vnc(self,display, internal_port, external_port):
         # Start X server in display
-        xserver_cmd = f"/usr/bin/Xorg -noreset +extension GLX +extension RANDR +extension RENDER -logfile ./xdummy.log -config ./xorg.conf {display}"
+        xserver_cmd = f"/usr/bin/Xorg -quiet -noreset +extension GLX +extension RANDR +extension RENDER -logfile ./xdummy.log -config ./xorg.conf {display}"
         xserver_thread = DockerThread(xserver_cmd)
         xserver_thread.start()
 
         # Start VNC server without password, forever running in background
-        x11vnc_cmd = f"x11vnc -display {display} -nopw -forever -xkb -bg -rfbport {internal_port}"
+        x11vnc_cmd = f"x11vnc -quiet -display {display} -nopw -forever -xkb -bg -rfbport {internal_port}"
         x11vnc_thread = DockerThread(x11vnc_cmd)
         x11vnc_thread.start()
 

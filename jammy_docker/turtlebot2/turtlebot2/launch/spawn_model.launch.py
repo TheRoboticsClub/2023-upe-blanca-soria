@@ -53,3 +53,20 @@ def generate_launch_description():
   ld.add_action(spawn_entity_node)
 
   return ld
+
+"""
+EVENTS:
+Events:  OnProcessStart, OnProcessIO, OnExecutionComplete, OnProcessExit, OnShutdown
+target_action='action'
+callback functions: on_start, on_stdout, on_completion, on_exit, on_shutdown
+
+RegisterEventHandler(
+    OnProcessIO(
+        target_action=spawn_entity_node,
+        on_stdout=lambda event: LogInfo(
+            msg='Spawn request says "{}"'.format(
+                event.text.decode().strip())
+        )
+    )
+)
+"""
