@@ -1,6 +1,6 @@
-# DOCKER CON RAM
+# DOCKER CON NUEVO RAM
 
-Esta carpeta contiene los DockerFiles necesarios para generar una imagen docker con Ubuntu 22.04, ROS2 Humble, Rviz2, Gazebo 11 y lo necesario para ejecutar un docker que sea capaz de hacer una comunicacion sencilla entre el docker y un servidor http como el que podemos ejecutar dentro de `/simple_connection`.
+Esta carpeta contiene los DockerFiles necesarios para generar una imagen docker con Ubuntu 22.04, ROS2 Humble, Rviz2, Gazebo 11 y lo necesario para ejecutar un contenedor que sea capaz de hacer una comunicacion sencilla entre la máquina y un servidor http como el que podemos ejecutar dentro de `/simple_connection`.
 
 ## Generar un contenedor
 La imagen `new_ram` se genera a partir del Dockerfile basico (con ubuntu, ROS2, Rviz y Gazebo) y el Dockerfile del nuevo RAM. Para conseguirlo ejecutar: 
@@ -20,30 +20,15 @@ docker exec -it <container name> /bin/bash
 ~~~
 
 ## Dentro del contenedor
-Una vez ejecutamos *run.sh* se nos abrirá una terminal dentro del contenedor. Nuestro directorio de trabajo actual es el workspace de ros2 humble con los respectivos directorios rcs, install build y logs. 
+Una vez ejecutamos *run.sh* se comenzará a ejecutar el manager.py (RAM) que está en `/` dentro del contenedor. En el terminal en el que tenemos el contenedor podemos ver los logs del manager, ya que se han sustituido todos ellos por prints para poder ver con facilidad y en todo momento en que punto se encuentra la máquina de estados.
 
-Para poder ver las salidas gráficas de nuestro docker tenemos en el directorio `/` varios scripts; 
-- Para iniciar un xserver, servidor vnc y cliente noVNC podemos usar `/start.sh` indicando los puertos y displays especificos ó `/start_4windows.sh` que inicia los 4 displays que estan ya configurados en la página windows.html de https://github.com/TheRoboticsClub/2023-upe-blanca-soria/tree/main/frontend :
+## Ejecutar Webserver
+Para poder comunicarnos con el manager deberemos ejecutar dentro de la carpeta `simple_connection` un servidor http:
 ~~~
-/start_vnc.sh <display> <internal_port> <external_port>
-~~~ 
-
-- El script `/start_console.sh` inicia una consola en el display :2 y puerto 1108 
-
-- El script `/kill_all.sh` mata todos los procesos de gazebo, rviz servidores x y servicios vnc.
-
-
-### Ejemplo de ejecución
-
-desde el directorio jammy_docker en el host ejecutamos:
+python -m http.server
 ~~~
-./build.sh
-./run.sh ram_container /ruta/a/directorio/de/trabajo
-~~~
-Una vez dentro del contenedor ejecutaremos los siguientes comandos:
-~~~
-/start_4windows.sh
-/start_console.sh
-~~~
+Y dentro de `localhost:8000/windows.html` podremos ver la página sencilla del siguiente modo:
+![Captura de pantalla de 2023-03-03 14-36-10](https://user-images.githubusercontent.com/79047431/222733830-625b6df0-c959-43cb-ac86-992305bc13f8.png)
 
+Para conectar ambas partes debemos recargar esta página una vez hemos iniciado el contenedor, y por tanto el manager. Cuando lo hacemos el manager pasa directamente al estado: CONNECTED. A partir de ahi podemos hacer DESCONNECT o LAUNCH. Para saber cuales son las posibilidades del siguiente estado los botones desapareceran y aparecerán tras transicionar, pero en el primer instante aparecerán todas los botones, por lo que se recomienda comenzar desconectando y a partir de ahi seguir el flujo de la máquina de estados.
 
