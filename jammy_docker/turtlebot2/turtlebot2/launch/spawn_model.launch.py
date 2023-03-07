@@ -44,10 +44,16 @@ def generate_launch_description():
     executable='spawn_entity.py',
     name='entity_spawner',
     output='screen',
-    arguments=["-topic", "/robot_description", "-entity", "turtlebot2", "-x", x_pos, "-y", y_pos, "-z", z_pos,'use_sim_time','true']
+    arguments=["-topic", "/robot_description", "-entity", "turtlebot2", "-x", x_pos, "-y", y_pos, "-z", z_pos]
   )
 
+  declare_use_sim_time_cmd = DeclareLaunchArgument(
+    name='use_sim_time',
+    default_value='true',
+    description='Use simulation (Gazebo) clock if true')
+
   ld = LaunchDescription()
+  ld.add_action(declare_use_sim_time_cmd)
   ld.add_action(turtlebot2_model)
   ld.add_action(joint_state_publisher_node)
   ld.add_action(spawn_entity_node)

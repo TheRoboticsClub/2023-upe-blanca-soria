@@ -6,18 +6,12 @@ import traceback
 from queue import Queue
 from uuid import uuid4
 from src.manager.vnc.docker_thread import DockerThread
-
 from transitions import Machine
-
 from src.ram_logging.log_manager import LogManager
-
 from src.comms.consumer_message import ManagerConsumerMessageException
 from src.libs.process_utils import get_class, get_class_from_file
 from src.manager.application.robotics_python_application_interface import IRoboticsPythonApplication
-from src.manager.launcher.launcher_engine import LauncherEngine
-from src.manager.vnc.console_view import Console_view
-from src.manager.vnc.gzb_view import Gzb_view
-from src.manager.vnc.rviz_view import Rviz_view
+from src.manager.launcher.launcher import Launcher
 from src.manager.lint.linter import Lint
 
 import json
@@ -118,29 +112,9 @@ class Manager:
         # LogManager.logger.info(f"Launch transition started, configuration: {configuration}")
         print(f"\nLaunch transition started, configuration: {configuration}\n")
 
-        # configuration['terminated_callback'] = terminated_callback
-        #self.launcher = LauncherEngine(**configuration)
-        #self.launcher.run()
-
-        print("\nstarting VIEWS\n")
-        gzb_viewer = Gzb_view(":0", 5900, 6080)
-        console_viewer = Console_view(":1", 5901, 1108)
-        rviz_viewer = Rviz_view(":2",5902,6081)
-        time.sleep(2)
-        console_viewer.start_console(1920, 1080)
-
-        exercise_launch_cmd = f"DISPLAY=:0 ros2 launch {self.exercise_id} spawn_model.launch.py"
-        exercise_launch_thread = DockerThread(exercise_launch_cmd)
-        exercise_launch_thread.start()
-        print(f"\nstarted launch exercise: {self.exercise_id} thread\n")
-
-        gazebo_launch_cmd = "DISPLAY=:0 ros2 launch gazebo_ros gazebo.launch.py"
-        gazebo_thread = DockerThread(gazebo_launch_cmd)
-        gazebo_thread.start()
-        print("\nstarted launch gazebo thread\n")
-
-        rviz_viewer.start_rviz()
-
+        #configuration['terminated_callback'] = terminated_callback
+        self.launcher = Launcher(self.exercise_id)
+        self.launcher.run()
 
         # TODO: launch application
         print("\nstarting Application\n")
@@ -150,7 +124,7 @@ class Manager:
         application_class = get_class_from_file(application_module, "Exercise")
 
         if not issubclass(application_class, IRoboticsPythonApplication):
-            #self.launcher.terminate()
+            self.launcher.terminate()
             raise Exception("The application must be an instance of IRoboticsPythonApplication")
 
         params['update_callback'] = self.update
@@ -159,9 +133,8 @@ class Manager:
 
     def on_terminate(self, event):
         try:
-            # self.application.terminate()
-            # self.launcher.terminate()
-            print("\napllication and launcher terminated\n")
+            self.application.terminate()
+            self.launcher.terminate()
         except Exception as e:
             #LogManager.logger.exception(f"Exception terminating instance")
             print(f"\nException terminating instance\n")
@@ -173,7 +146,6 @@ class Manager:
 
     def on_enter_ready(self, event):
         configuration = event.kwargs.get('data', {})
-
         # LogManager.logger.info(f"Start state entered, configuration: {configuration}")
         print(f"\nStart state entered, configuration: {configuration}\n")
 
@@ -185,6 +157,7 @@ class Manager:
             message_data = event.kwargs.get('data', {})
             message_data = json.loads(message_data) # !!
             errors = self.linter.evaluate_code(message_data['code'])
+            print(errors)
 
             if errors is "":
                 #self.application.load_code(message_data['code'])
@@ -203,6 +176,7 @@ class Manager:
     def process_messsage(self, message):
         last_state = self.state
         self.trigger(message.command, data=message.data or None)
+        print("LAST STATE: ", last_state, "TRIGGER: ",message.command, "ACTUAL STATE: ", self.state,"CODE LOADED: ",self.__code_loaded)
         if (last_state != self.state):
             response = {"message": f"Exercise state changed to {self.state}"}
             self.consumer.send_message(message.response(response))
@@ -230,7 +204,11 @@ class Manager:
 
     def on_disconnect(self, event):
         print("\non disconnect\n")
-        pass
+        if (self.state != "connected" and  self.state != "idle"):
+            self.application.terminate()
+            self.launcher.terminate()
+        else:
+            pass
 
     def start(self):
         """

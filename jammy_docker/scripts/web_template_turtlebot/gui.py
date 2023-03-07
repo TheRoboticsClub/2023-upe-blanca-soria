@@ -23,6 +23,7 @@ class GUI:
     # Initialization function
     # The actual initialization
     def __init__(self, host):
+        rclpy.init()
         self.node = rclpy.create_node('GUI')
 
         self.payload = {'image': '','lap': '', 'map': '', 'v':'','w':''}
@@ -153,11 +154,6 @@ class ProcessGUI(multiprocessing.Process):
         super(ProcessGUI, self).__init__()
 
         self.host = sys.argv[1]
-        # Circuit
-        if (len(sys.argv) > 1):
-            self.circuit = sys.argv[2]
-        else:
-            self.circuit = None
 
         # Time variables
         self.time_cycle = SharedValue("gui_time_cycle")
@@ -174,7 +170,7 @@ class ProcessGUI(multiprocessing.Process):
     # Function to start the execution of threads
     def run(self):
         # Initialize GUI
-        self.gui = GUI(self.host, self.circuit)
+        self.gui = GUI(self.host)
         self.initialize_events()
 
         # Wait for client before starting

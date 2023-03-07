@@ -2,9 +2,9 @@
 
 # setup environment:
 root="cd /"
-ros_setup="source .env"
+ros_setup="source .env && source ~/.bashrc"
 copy_RAM="cp home/shared_dir/manager.py manager.py"
-$root && $ros_setup && $copy_RAM && echo 'environment set'
+$root && $ros_setup && echo 'environment set'
 
 
 # execute RAM from /

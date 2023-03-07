@@ -32,5 +32,5 @@ Y dentro de `localhost:8000/windows.html` podremos ver la página sencilla del s
 
 ![Captura de pantalla de 2023-03-03 14-36-10](https://user-images.githubusercontent.com/79047431/222733830-625b6df0-c959-43cb-ac86-992305bc13f8.png)
 
-Para conectar ambas partes debemos recargar esta página una vez hemos iniciado el contenedor, y por tanto el manager. Cuando lo hacemos el manager pasa directamente al estado: CONNECTED. A partir de ahi podemos hacer DESCONNECT o LAUNCH. Para saber cuales son las posibilidades del siguiente estado los botones desapareceran y aparecerán tras transicionar, pero en el primer instante aparecerán todas los botones, por lo que se recomienda comenzar desconectando y a partir de ahi seguir el flujo de la máquina de estados.
+Para conectar ambas partes debemos recargar esta página una vez hemos iniciado el contenedor, y por tanto el manager. Cuando lo hacemos el manager pasa directamente al estado: CONNECTED. A partir de ahi podemos hacer DISCONNECT o LAUNCH. Para saber cuales son las posibilidades del siguiente estado los botones desapareceran y aparecerán tras transicionar, pero en el primer instante aparecerán todas los botones, por lo que se recomienda comenzar desconectando y a partir de ahi seguir el flujo de la máquina de estados.
 
