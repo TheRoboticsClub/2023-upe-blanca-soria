@@ -44,7 +44,7 @@ def generate_launch_description():
     executable='spawn_entity.py',
     name='entity_spawner',
     output='screen',
-    arguments=["-topic", "/robot_description", "-entity", "turtlebot2", "-x", x_pos, "-y", y_pos, "-z", z_pos]
+    arguments=["-topic", "/robot_description", "-entity", "turtlebot2", "-x", x_pos, "-y", y_pos, "-z", z_pos,'use_sim_time','true']
   )
 
   ld = LaunchDescription()

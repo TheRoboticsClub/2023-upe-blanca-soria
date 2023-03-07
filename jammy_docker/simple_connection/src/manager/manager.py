@@ -75,7 +75,7 @@ class Manager:
 
     def update(self, data):
         #LogManager.logger.debug(f"Sending update to client")
-        print(f"\nSending update to client\n")
+        #print(f"\nSending update to client\n")
         if self.consumer is not None:
             self.consumer.send_message({'update': data}, command="update")
 
@@ -128,9 +128,6 @@ class Manager:
         rviz_viewer = Rviz_view(":2",5902,6081)
         time.sleep(2)
         console_viewer.start_console(1920, 1080)
-        
-        #gzb_viewer.start_gzserver(configuration["launch"]["0"]["launch_file"])
-        #gzb_viewer.start_gzclient(configuration["launch"]["0"]["launch_file"], 1920, 1080)
 
         exercise_launch_cmd = f"DISPLAY=:0 ros2 launch {self.exercise_id} spawn_model.launch.py"
         exercise_launch_thread = DockerThread(exercise_launch_cmd)
@@ -144,19 +141,21 @@ class Manager:
 
         rviz_viewer.start_rviz()
 
+
         # TODO: launch application
         print("\nstarting Application\n")
         application_file = application_configuration['entry_point']
         params = application_configuration.get('params', None)
         application_module = os.path.expandvars(application_file)
-        #application_class = get_class_from_file(application_module, "Exercise")
+        application_class = get_class_from_file(application_module, "Exercise")
 
-        #if not issubclass(application_class, IRoboticsPythonApplication):
-        #    self.launcher.terminate()
-        #    raise Exception("The application must be an instance of IRoboticsPythonApplication")
+        if not issubclass(application_class, IRoboticsPythonApplication):
+            #self.launcher.terminate()
+            raise Exception("The application must be an instance of IRoboticsPythonApplication")
 
         params['update_callback'] = self.update
-        #self.application = application_class(**params)
+        self.application = application_class(**params)
+        print("APPLICATION CREATED")
 
     def on_terminate(self, event):
         try:

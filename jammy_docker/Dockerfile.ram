@@ -6,7 +6,7 @@ COPY ./turtlebot2 /home/ws/src/
 COPY ./worlds /home/ws/src/
 COPY ./display_conf /home/.display_conf
 
-# simple_connection 
+# RAM and src directory muste be in / to execute correctly
 COPY ./simple_connection/src /src
 COPY ./simple_connection/src/manager/manager.py /
 
@@ -30,6 +30,9 @@ RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 RUN cd /  && git clone https://github.com/JdeRobot/RoboticsAcademy.git -b master
 COPY ./.env /.env
 
+# Create exercise file for turtlebot ROS2
+RUN mkdir -p /RoboticsAcademy/exercises/static/exercises/turtlebot2/web-template
+COPY ./scripts/web_template_turtlebot /RoboticsAcademy/exercises/static/exercises/turtlebot2/web-template
 
 # compile workspace
 WORKDIR /home/ws
@@ -63,5 +66,5 @@ EXPOSE 6082
 # WebRtc
 EXPOSE 1831
 
-WORKDIR /home
-CMD ["/entrypoint.sh"]
+WORKDIR /
+CMD ["./entrypoint.sh"]
