@@ -39,6 +39,10 @@ Además, si tenemos el turtlebot2 iniciado en cualquier mundo podremos visualiza
 ~~~
 DISPLAY=:3 ros2 run gui_pkg showgui
 ~~~
+Si queremos comporbar que los motores están funcionando, tenemos otro nodo que genera una espiral:
+~~~
+DISPLAY=:3 ros2 run gui_pkg moveturt
+~~~
 
 ### Ejemplo de ejecución
 
