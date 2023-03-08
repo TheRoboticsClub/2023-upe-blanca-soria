@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
                 'showgui = gui_pkg.image_sub:main',
+                'moveturt = gui_pkg.motor_pub:main',
         ],
     },
 )

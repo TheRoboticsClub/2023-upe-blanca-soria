@@ -15,7 +15,7 @@ class ImageSubscriber(Node):
         try:
             # Convert your ROS2 Image message to OpenCV2
             cv2_img = self.bridge.imgmsg_to_cv2(msg, "bgr8")
-        except CvBridgeError as error:
+        except Exception as error:
             print(error)
         else:
             winname = "Turtlebot2 camera"

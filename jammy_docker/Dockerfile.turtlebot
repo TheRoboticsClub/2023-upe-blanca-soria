@@ -27,14 +27,16 @@ RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 # create python ros2 gui package
 RUN cd /home/turtlebot2_ws/src && ros2 pkg create --build-type ament_python gui_pkg
 COPY ./scripts/gui_pkg/image_sub.py /home/turtlebot2_ws/src/gui_pkg/gui_pkg/image_sub.py
+COPY ./scripts/gui_pkg/motor_pub.py /home/turtlebot2_ws/src/gui_pkg/gui_pkg/motor_pub.py
 COPY ./scripts/gui_pkg/package.xml /home/turtlebot2_ws/src/gui_pkg/package.xml
 COPY ./scripts/gui_pkg/setup.py /home/turtlebot2_ws/src/gui_pkg/setup.py
 
 # compile workspace
 WORKDIR /home/turtlebot2_ws
 RUN sudo rosdep fix-permissions && rosdep update
-RUN rosdep install --from-paths src --ignore-src -r -y
+RUN rosdep install --from-paths src --ignore-src -r  --rosdistro humble -y
 RUN colcon build --symlink-install
+RUN . install/setup.bash
 
 # Django server
 EXPOSE 8000
