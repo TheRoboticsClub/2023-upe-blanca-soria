@@ -16,8 +16,9 @@ COPY ./scripts/kill_all.sh /
 COPY ./scripts/start_4windows.sh /
 COPY ./scripts/start_console.sh /
 COPY ./scripts/entrypoint.sh /
-# give permission if there is not already done
-RUN chmod +x /start_vnc.sh /kill_all.sh /start_console.sh /start_4windows.sh /entrypoint.sh
+
+# give permission if it is not already done
+RUN chmod +x /start_vnc.sh /kill_all.sh /start_console.sh /start_4windows.sh /entrypoint.sh /manager.py
 
 # configure setup.bash
 RUN echo 'source /home/ws/install/setup.bash' >> ~/.bashrc
@@ -27,7 +28,8 @@ RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/ws/src/amazon_hospit
 RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 
 # RoboticsAcademy
-RUN cd /  && git clone https://github.com/JdeRobot/RoboticsAcademy.git -b master
+#RUN cd /  && git clone https://github.com/JdeRobot/RoboticsAcademy.git -b master
+COPY ./RoboticsAcademy /RoboticsAcademy
 COPY ./.env /.env
 
 # Create exercise file for turtlebot ROS2
@@ -37,8 +39,9 @@ COPY ./scripts/web_template_turtlebot /RoboticsAcademy/exercises/static/exercise
 # compile workspace
 WORKDIR /home/ws
 RUN sudo rosdep fix-permissions && rosdep update
-RUN rosdep install --from-paths src --ignore-src -r -y
+RUN rosdep install --from-paths src --ignore-src -r --rosdistro humble -y
 RUN colcon build --symlink-install
+RUN . install/setup.bash
 
 # http server
 EXPOSE 8000

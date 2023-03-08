@@ -5,12 +5,13 @@ import subprocess
 import sys
 import threading
 import time
+from threading import Thread
 
 from src.libs.applications.compatibility.client import Client
 from src.libs.process_utils import stop_process_and_children
 from src.ram_logging.log_manager import LogManager
 from src.manager.application.robotics_python_application_interface import IRoboticsPythonApplication
-
+from src.manager.lint.linter import Lint
 
 class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
     def __init__(self, exercise_command, gui_command, update_callback):
@@ -18,7 +19,7 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
 
         home_dir = os.path.expanduser('~')
         self.running = False
-
+        self.linter = Lint()
         # TODO: review hardcoded values
         process_ready, self.exercise_server = self._run_exercise_server(f"python3 {exercise_command}",
                                                                         f'{home_dir}/ws_code.log',
@@ -43,7 +44,7 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
             self.gui_server.kill()
             raise RuntimeError(f"Exercise GUI {gui_command} could not be run")
         
-        self.pause()
+        self.running = True
 
     def _run_exercise_server(self, cmd, log_file, load_string, timeout: int = 5):
         process = subprocess.Popen(f"{cmd}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
@@ -72,36 +73,43 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
             self._process_exercise_message(message)
 
     def _process_gui_message(self, message):
-        command = message[:4]
         payload = json.loads(message[4:])
         self.update_callback(payload)
         self.gui_connection.send("#ack")
 
     def _process_exercise_message(self, message):
-        command = message[:5]
         payload = json.loads(message[5:])
         self.update_callback(payload)
         self.exercise_connection.send("#ack")
-
-    def run(self):
-        run_cmd = "ros2 service call /unpause_physics std_srvs/srv/Empty"
-        subprocess.call(f"{run_cmd}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
+    
+    def call_service(self, service, service_type):
+        command = f"ros2 service call {service} {service_type}"
+        subprocess.call(f"{command}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
                                    universal_newlines=True)
+    
+    def run(self):
+        def send_freq():
+
+            while self.is_alive:
+                self.exercise_connection.send(
+                    """#freq{"brain": 20, "gui": 10, "rtf": 100}""")
+                time.sleep(1)
+
+        self.call_service("/unpause_physics","std_srvs/srv/Empty")
+        daemon = Thread(target=send_freq, daemon=False,
+                        name='Monitor frequencies')
+        daemon.start()
+        
 
     def stop(self):
-        stp_cmd = "ros2 service call /reset_world std_srvs/srv/Empty"
-        subprocess.call(f"{stp_cmd}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
-                                   universal_newlines=True)
+        self.call_service("/pause_physics","std_srvs/srv/Empty")
+        self.call_service("/reset_world","std_srvs/srv/Empty")
 
     def resume(self):
-        rsm_cmd = "ros2 service call /unpause_physics std_srvs/srv/Empty"
-        subprocess.call(f"{rsm_cmd}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
-                                   universal_newlines=True)
+        self.call_service("/unpause_physics","std_srvs/srv/Empty")
 
     def pause(self):
-        pause_cmd = "ros2 service call /pause_physics std_srvs/srv/Empty"
-        subprocess.call(f"{pause_cmd}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
-                                   universal_newlines=True)
+        self.call_service("/pause_physics","std_srvs/srv/Empty")
 
     def restart(self):
         # pause_cmd = "ros2 service call /restart_simulation std_srvs/srv/Empty"
@@ -114,7 +122,12 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
         return self.running
 
     def load_code(self, code: str):
-        self.exercise_connection.send(f"#code {code}")
+        errors = self.linter.evaluate_code(code)
+        if errors == "":
+            self.exercise_connection.send(f"#code {code}")
+        else:
+            raise Exception(errors)
+
 
     def terminate(self):
         self.running = False

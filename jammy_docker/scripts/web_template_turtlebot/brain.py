@@ -60,12 +60,11 @@ class BrainProcess(multiprocessing.Process):
         iterative_code, sequential_code = self.iterative_code, self.sequential_code
 
         print("APpyyyy debug", flush=True)
-        # print(iterative_code)
+        print(iterative_code,"\n",sequential_code)
 
         # Whatever the code is, first step is to just stop!
         self.hal.sendV(0)
         self.hal.sendW(0)
-
 
         # The Python exec function
         # Run the sequential part

@@ -219,13 +219,15 @@ class Template:
                 # First pause the teleoperator thread if exists
                 if self.teleop.is_alive():
                     self.exit_signal_teleop.set()
-                
+                print("\npaused teloperator if existed")
+
                 self.paused = False
 
                 # Once received turn the reload flag up and send it to execute_thread function
                 code = message
-                # print(repr(code))
+                print("\nREPR(CODE):",repr(code),"\nSTR(code): ",str(code))
                 self.reload.set()
+                print("\nReload SET, entering in execute:thread(c0de)")
                 self.execute_thread(code)
             except:
                 pass

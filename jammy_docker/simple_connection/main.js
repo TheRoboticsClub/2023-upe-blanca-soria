@@ -3,7 +3,6 @@
 
 var fileContent_loaded = false;
 var fileContent;
-var last_msg;
 var actual_id = 0;
 
 const CommsManager = (address) => {
@@ -203,9 +202,10 @@ const CommsManager = (address) => {
   });
 
   function received_msg(message) {
-    console.log(message.command,last_msg);
+    console.log(message.command,message.data);
+
     if (message.command === "ack") {
-      switch (last_msg){
+      switch (message.data){
         case "stop":
         case "launch":
         case "load":
@@ -360,18 +360,15 @@ const CommsManager = (address) => {
                     console.log(json);
                     console.log(comand);
                     window.RoboticsExerciseComponents.commsManager.send(comand,json);
-                    last_msg = comand;
                 })
         } else if (comand === "load") {
             if (fileContent_loaded) {
               window.RoboticsExerciseComponents.commsManager.send(comand,fileContent);
-              last_msg = comand;
             } else {
               return;
             }
         } else {
             window.RoboticsExerciseComponents.commsManager.send(comand);
-            last_msg = comand;
         }
         
     })
