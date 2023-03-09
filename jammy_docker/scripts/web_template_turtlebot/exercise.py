@@ -32,6 +32,8 @@ class Template:
         print("Exercise initializing", flush=True)
         self.brain_process = None
         self.reload = multiprocessing.Event()
+        self.stop_brain = multiprocessing.Event()
+        self.user_code = ""
 
         # Time variables
         self.brain_time_cycle = SharedValue('brain_time_cycle')
@@ -50,11 +52,6 @@ class Template:
 
         # Initialize the GUI and HAL behind the scenes
         self.hal = HAL()
-
-        self.exit_signal_teleop = threading.Event()
-        self.teleop_q = queue.Queue()
-        self.teleop = TeleopThread(self.teleop_q,self.exit_signal_teleop,self.hal)
-        self.paused = False
         print("Exercise initialized", flush=True)
 
     # Function for saving
@@ -132,12 +129,14 @@ class Template:
 
         # Turn the flag down, the iteration has successfully stopped!
         self.reload.clear()
+        self.stop_brain.set()
+
         # New thread execution
         code = self.parse_code(source_code)
         if code[0] == "" and code[1] == "":
             return
 
-        self.brain_process = BrainProcess(code, self.reload)
+        self.brain_process = BrainProcess(code, self.reload, self.stop_brain)
         self.brain_process.start()
         self.send_code_message()
 
@@ -171,7 +170,6 @@ class Template:
                 self.real_time_factor = stats_list[0].decode("utf-8")
 
     # Function to generate and send frequency messages
-
     def send_frequency_message(self):
         # This function generates and sends frequency measures of the brain and gui
         brain_frequency = 0
@@ -212,25 +210,42 @@ class Template:
     # The websocket function
     # Gets called when there is an incoming message from the client
     def handle(self, client, server, message):
+
+        if (message[:5] == "#freq"):
+            frequency_message = message[5:]
+            self.read_frequency_message(frequency_message)
+            #time.sleep(1)
+            # self.send_frequency_message()
+            return
         
-        if (message[:5] == "#code"):
-            print("\n MSG is CODE\n")
+        elif (message[:5] == "#ping"):
+            #time.sleep(1)
+            self.send_ping_message()
+            return
+        
+        elif (message[:5] == "#code"):
+            print("received CODE msg")
             try:
-                # First pause the teleoperator thread if exists
-                if self.teleop.is_alive():
-                    self.exit_signal_teleop.set()
-                print("\npaused teloperator if existed")
-
-                self.paused = False
-
                 # Once received turn the reload flag up and send it to execute_thread function
-                code = message
-                print("\nREPR(CODE):",repr(code),"\nSTR(code): ",str(code))
+                self.user_code = message
                 self.reload.set()
-                print("\nReload SET, entering in execute:thread(c0de)")
-                self.execute_thread(code)
+                self.execute_thread(self.user_code)
             except:
                 pass
+
+        elif (message[:5] == "#stop"):
+            print("received STOP msg")
+            self.stop_brain.set()
+
+        elif (message[:5] == "#play"):
+            print("received RESUME msg")
+            self.stop_brain.clear()
+
+        elif (message[:5] == "#rset"):
+            print("received RESET msg")
+            self.reload.set()
+            self.execute_thread(self.user_code)
+
         else:
             print(f"\n MSG is NOTTTTTTTT CODE: msg= {message[:5]}\n")
 
@@ -250,8 +265,9 @@ class Template:
         # Initialize the ping message
         self.send_frequency_message()
 
-        message ="#conn"+json.dumps("Client connected")
-        self.server.send_message(self.client, message)
+        #message ="#conn"+json.dumps("Client connected")
+        #self.server.send_message(self.client, message)
+        print("\n",client, 'connected')
 
     # Function that gets called when the connected closes
     def handle_close(self, client, server):

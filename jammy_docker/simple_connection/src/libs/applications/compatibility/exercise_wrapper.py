@@ -96,6 +96,8 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
                 time.sleep(1)
 
         self.call_service("/unpause_physics","std_srvs/srv/Empty")
+        self.exercise_connection.send("#play")
+
         daemon = Thread(target=send_freq, daemon=False,
                         name='Monitor frequencies')
         daemon.start()
@@ -104,12 +106,15 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
     def stop(self):
         self.call_service("/pause_physics","std_srvs/srv/Empty")
         self.call_service("/reset_world","std_srvs/srv/Empty")
+        self.exercise_connection.send("#rset")
 
     def resume(self):
         self.call_service("/unpause_physics","std_srvs/srv/Empty")
+        self.exercise_connection.send("#play")
 
     def pause(self):
         self.call_service("/pause_physics","std_srvs/srv/Empty")
+        self.exercise_connection.send("#stop")
 
     def restart(self):
         # pause_cmd = "ros2 service call /restart_simulation std_srvs/srv/Empty"
@@ -122,9 +127,9 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
         return self.running
 
     def load_code(self, code: str):
-        errors = self.linter.evaluate_code(code)
+        errors = self.linter.evaluate_code(mycode)
         if errors == "":
-            self.exercise_connection.send(f"#code {code}")
+            self.exercise_connection.send(f"#code {mycode}")
         else:
             raise Exception(errors)
 
@@ -136,3 +141,15 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
 
         stop_process_and_children(self.exercise_server)
         stop_process_and_children(self.gui_server)
+
+mycode = """from GUI import GUI
+from HAL import HAL
+# Enter sequential code!
+v=0
+w=0.2
+inc=0.001
+while True:
+    # Enter iterative code!
+    v = v + inc
+    HAL.setV(v)
+    HAL.setW(w)"""

@@ -4,6 +4,7 @@
 var fileContent_loaded = false;
 var fileContent;
 var actual_id = 0;
+var last_cmd;
 
 const CommsManager = (address) => {
     let websocket = null;
@@ -202,10 +203,10 @@ const CommsManager = (address) => {
   });
 
   function received_msg(message) {
-    console.log(message.command,message.data);
+    console.log(message.command,message.data,last_cmd);
 
     if (message.command === "ack") {
-      switch (message.data){
+      switch (last_cmd){
         case "stop":
         case "launch":
         case "load":
@@ -370,6 +371,7 @@ const CommsManager = (address) => {
         } else {
             window.RoboticsExerciseComponents.commsManager.send(comand);
         }
+        last_cmd = comand
         
     })
   }

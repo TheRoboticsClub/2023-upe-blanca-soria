@@ -41,7 +41,6 @@ WORKDIR /home/ws
 RUN sudo rosdep fix-permissions && rosdep update
 RUN rosdep install --from-paths src --ignore-src -r --rosdistro humble -y
 RUN colcon build --symlink-install
-RUN . install/setup.bash
 
 # http server
 EXPOSE 8000

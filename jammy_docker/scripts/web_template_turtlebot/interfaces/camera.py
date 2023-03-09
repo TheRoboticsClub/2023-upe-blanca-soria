@@ -74,7 +74,6 @@ class ListenerCamera:
         self.sub.unregister()
 
     def start(self):
-        #self.sub = rospy.Subscriber(self.topic, ImageROS, self.__callback)
         self.sub = self.node.create_subscription(ImageROS, self.topic, self.__callback,10 )
         
     def getImage(self):

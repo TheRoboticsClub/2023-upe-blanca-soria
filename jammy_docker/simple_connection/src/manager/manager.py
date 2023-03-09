@@ -48,6 +48,8 @@ class Manager:
             'dest': 'paused', 'before': 'on_pause'},
         {'trigger': 'stop', 'source': [
             'running', 'paused'], 'dest': 'ready', 'before': 'on_stop'},
+        # Transitions for state paused
+        {'trigger': 'resume', 'source': 'paused', 'dest': 'running', 'before': 'on_resume'},
         # Global transitions
         {'trigger': 'disconnect', 'source': '*',
             'dest': 'idle', 'before': 'on_disconnect'},
@@ -153,11 +155,12 @@ class Manager:
 
     def load_code(self, event):
         self.application.pause()
-        self.code_loaded = False
+        self.__code_loaded = False
         LogManager.logger.info("Internal transition load_code executed")
         message_data = event.kwargs.get('data', {})
+        message_data = json.loads(message_data) # no se porque hoy hay que hacer esto y ayer no
         self.application.load_code(message_data['code'])
-        self.code_loaded = True
+        self.__code_loaded = True
 
     def code_loaded(self, event):
         return self.__code_loaded
@@ -185,9 +188,9 @@ class Manager:
 
     def on_disconnect(self, event):
         try:
-            self.application.terminate()
             self.__code_loaded = False
             self.launcher.terminate()
+            self.application.terminate()
         except Exception as e:
             LogManager.logger.exception(f"Exception terminating instance")
             print(traceback.format_exc())

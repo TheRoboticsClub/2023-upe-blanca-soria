@@ -24,7 +24,7 @@ class GUI:
     # The actual initialization
     def __init__(self, host):
         rclpy.init()
-        self.node = rclpy.create_node('GUI')
+        rclpy.create_node('GUI')
 
         self.payload = {'image': '','lap': '', 'map': '', 'v':'','w':''}
         self.server = None
