@@ -35,4 +35,5 @@ Y dentro de `localhost:8000/windows.html` podremos ver la página sencilla del s
 Para conectar ambas partes debemos recargar esta página una vez hemos iniciado `entrypoint.sh`, y por tanto el manager. Cuando lo hacemos el manager pasa directamente al estado: CONNECTED. A partir de ahi podemos hacer DISCONNECT o LAUNCH. Para saber cuales son las posibilidades del siguiente estado los botones desapareceran y aparecerán tras transicionar, pero en el primer instante aparecerán todas los botones. Se recomienda hacer un DISCONNECT incialmente para seguir el flujo de la máquina de estados con mas facilidad.
 
 
+![States_machineRAM](https://user-images.githubusercontent.com/79047431/224103776-18e710d1-acc3-4604-8e97-6122009fc544.png)
 
