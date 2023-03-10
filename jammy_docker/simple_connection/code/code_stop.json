@@ -1,3 +1,0 @@
-{
-    "code": "#stopfrom GUI import GUI\nfrom HAL import HAL\n# Enter sequential code!\nwhile (True):\n\twhile True:\n\t# Enter iterative code!"
-}

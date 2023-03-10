@@ -129,7 +129,6 @@ class Template:
 
         # Turn the flag down, the iteration has successfully stopped!
         self.reload.clear()
-        self.stop_brain.set()
 
         # New thread execution
         code = self.parse_code(source_code)
@@ -214,40 +213,33 @@ class Template:
         if (message[:5] == "#freq"):
             frequency_message = message[5:]
             self.read_frequency_message(frequency_message)
-            #time.sleep(1)
-            # self.send_frequency_message()
+            self.send_frequency_message()
             return
         
         elif (message[:5] == "#ping"):
-            #time.sleep(1)
             self.send_ping_message()
             return
         
         elif (message[:5] == "#code"):
-            print("received CODE msg")
             try:
                 # Once received turn the reload flag up and send it to execute_thread function
                 self.user_code = message
                 self.reload.set()
+                self.stop_brain.set()
                 self.execute_thread(self.user_code)
             except:
                 pass
 
         elif (message[:5] == "#stop"):
-            print("received STOP msg")
             self.stop_brain.set()
 
         elif (message[:5] == "#play"):
-            print("received RESUME msg")
             self.stop_brain.clear()
 
-        elif (message[:5] == "#rset"):
-            print("received RESET msg")
+        elif (message[:5] == "#rest"):
             self.reload.set()
+            self.stop_brain.set()
             self.execute_thread(self.user_code)
-
-        else:
-            print(f"\n MSG is NOTTTTTTTT CODE: msg= {message[:5]}\n")
 
 
     # Function that gets called when the server is connected
@@ -265,14 +257,12 @@ class Template:
         # Initialize the ping message
         self.send_frequency_message()
 
-        #message ="#conn"+json.dumps("Client connected")
-        #self.server.send_message(self.client, message)
-        print("\n",client, 'connected')
+        print(client, 'connected')
 
     # Function that gets called when the connected closes
     def handle_close(self, client, server):
-        print("\n",client, 'closed\n')
-
+        print(client, 'closed')
+        
     def run_server(self):
         self.server = WebsocketServer(port=1905, host=self.host)
         self.server.set_fn_new_client(self.connected)

@@ -72,7 +72,6 @@ class Manager:
     def state_change(self, event):
 
         LogManager.logger.info(f"State changed to {self.state}")
-        print(f"\nState changed to {self.state}\n")
         if self.consumer is not None:
             self.consumer.send_message(
                 {'state': self.state}, command="state-changed")
@@ -90,7 +89,6 @@ class Manager:
             # TODO: Prototype, review this callback
             LogManager.logger.info(
                 f"Manager: Launcher {name} died with code {code}")
-            print(f"\nManager: Launcher {name} died with code {code}\n")
             if self.state != 'ready':
                 self.terminate()
 
@@ -112,7 +110,6 @@ class Manager:
             raise Exception("Launch configuration missing")
 
         LogManager.logger.info(f"Launch transition started, configuration: {configuration}")
-        print(f"\nLaunch transition started, configuration: {configuration}\n")
 
         #configuration['terminated_callback'] = terminated_callback
         #TODO:create launcher with launcher configuration instead of hardcoded
@@ -133,7 +130,6 @@ class Manager:
         self.application = application_class(**params)
         time.sleep(1)
         self.application.pause()
-        print("APPLICATION CREATED")
 
     def on_terminate(self, event):
         try:
@@ -146,12 +142,10 @@ class Manager:
 
     def on_enter_connected(self, event):
         LogManager.logger.info("Connect state entered")
-        print("\nConnect state entered\n")
 
     def on_enter_ready(self, event):
         configuration = event.kwargs.get('data', {})
         LogManager.logger.info(f"Start state entered, configuration: {configuration}")
-        print(f"\nStart state entered, configuration: {configuration}\n")
 
     def load_code(self, event):
         self.application.pause()
@@ -166,16 +160,13 @@ class Manager:
         return self.__code_loaded
 
     def process_messsage(self, message):
-        last_state = self.state
         self.trigger(message.command, data=message.data or None)
-        print("LAST STATE: ", last_state, "TRIGGER: ",message.command, "ACTUAL STATE: ", self.state,"CODE LOADED: ",self.__code_loaded)
         response = {"message": f"Exercise state changed to {self.state}"}
         self.consumer.send_message(message.response(response))
 
     def on_run(self, event):
         if self.code_loaded:
             self.application.run()
-        print(f"\non run, code_loaded: {self.__code_loaded}\n",)
 
     def on_pause(self, msg):
         self.application.pause()
@@ -200,8 +191,7 @@ class Manager:
         Starts the RAM
         RAM must be run in main thread to be able to handle signaling other processes, for instance ROS launcher.
         """
-        # LogManager.logger.info(f"Starting RAM consumer in {self.consumer.server}:{self.consumer.port}")
-        print(f"\nStarting RAM consumer in {self.consumer.server}:{self.consumer.port}\n")
+        LogManager.logger.info(f"Starting RAM consumer in {self.consumer.server}:{self.consumer.port}")
        
         self.consumer.start()
         # TODO: change loop end condition

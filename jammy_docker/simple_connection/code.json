@@ -1,0 +1,3 @@
+{
+    "code": "from GUI import GUI\nfrom HAL import HAL\n# Enter sequential code!\nv=0\nw=0.2\ninc=0.001\nwhile True:\n# Enter iterative code!\nv = v + inc\nHAL.setV(v)\nHAL.setW(w)"
+}

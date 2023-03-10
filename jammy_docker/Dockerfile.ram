@@ -25,6 +25,7 @@ RUN echo 'source /home/ws/install/setup.bash' >> ~/.bashrc
 RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/ws/src/amazon_hospital/models' >> ~/.bashrc
 RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/ws/src/amazon_hospital/fuel_models' >> ~/.bashrc
 RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/ws/src/amazon_hospital/hospital_world/models' >> ~/.bashrc
+RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/ws/install/kobuki_description/share' >> ~/.bashrc
 RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 
 # RoboticsAcademy

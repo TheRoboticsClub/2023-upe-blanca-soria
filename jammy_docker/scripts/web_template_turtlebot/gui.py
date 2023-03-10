@@ -62,13 +62,6 @@ class GUI:
         
         return payload
 
-    # Function for student to call
-    def showImage(self, image):
-        self.image_show_lock.acquire()
-        self.image_to_be_shown = image
-        self.image_to_be_shown_updated = True
-        self.image_show_lock.release()
-
     # Function to get the client
     # Called when a new client is received
     def get_client(self, client, server):
@@ -93,6 +86,11 @@ class GUI:
         
         message = "#gui" + json.dumps(self.payload)
         self.server.send_message(self.client, message)
+
+        # usually the image will be displayed in the browser with 'message' through the manager's update callback
+        # here image will be displayed in GUI Vnc VIEW
+        #cv2.imshow()
+
             
     # Function to read the message from websocket
     # Gets called when there is an incoming message from the client
