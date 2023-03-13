@@ -47,9 +47,32 @@ def generate_launch_description():
     arguments=["-topic", "/robot_description", "-entity", "turtlebot2", "-x", x_pos, "-y", y_pos, "-z", z_pos]
   )
 
+  declare_use_sim_time_cmd = DeclareLaunchArgument(
+    name='use_sim_time',
+    default_value='true',
+    description='Use simulation (Gazebo) clock if true')
+
   ld = LaunchDescription()
+  ld.add_action(declare_use_sim_time_cmd)
   ld.add_action(turtlebot2_model)
   ld.add_action(joint_state_publisher_node)
   ld.add_action(spawn_entity_node)
 
   return ld
+
+"""
+EVENTS:
+Events:  OnProcessStart, OnProcessIO, OnExecutionComplete, OnProcessExit, OnShutdown
+target_action='action'
+callback functions: on_start, on_stdout, on_completion, on_exit, on_shutdown
+
+RegisterEventHandler(
+    OnProcessIO(
+        target_action=spawn_entity_node,
+        on_stdout=lambda event: LogInfo(
+            msg='Spawn request says "{}"'.format(
+                event.text.decode().strip())
+        )
+    )
+)
+"""

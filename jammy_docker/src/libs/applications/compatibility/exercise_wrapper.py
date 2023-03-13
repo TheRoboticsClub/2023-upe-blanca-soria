@@ -5,13 +5,13 @@ import subprocess
 import sys
 import threading
 import time
-import rosservice
+from threading import Thread
 
 from src.libs.applications.compatibility.client import Client
 from src.libs.process_utils import stop_process_and_children
 from src.ram_logging.log_manager import LogManager
 from src.manager.application.robotics_python_application_interface import IRoboticsPythonApplication
-
+from src.manager.lint.linter import Lint
 
 class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
     def __init__(self, exercise_command, gui_command, update_callback):
@@ -19,9 +19,9 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
 
         home_dir = os.path.expanduser('~')
         self.running = False
-
+        self.linter = Lint()
         # TODO: review hardcoded values
-        process_ready, self.exercise_server = self._run_exercise_server(f"python {exercise_command}",
+        process_ready, self.exercise_server = self._run_exercise_server(f"python3 {exercise_command}",
                                                                         f'{home_dir}/ws_code.log',
                                                                         'websocket_code=ready')
         if process_ready:
@@ -33,7 +33,7 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
             self.exercise_server.kill()
             raise RuntimeError(f"Exercise {exercise_command} could not be run")
 
-        process_ready, self.gui_server = self._run_exercise_server(f"python {gui_command}", f'{home_dir}/ws_gui.log',
+        process_ready, self.gui_server = self._run_exercise_server(f"python3 {gui_command}", f'{home_dir}/ws_gui.log',
                                                                    'websocket_gui=ready')
         if process_ready:
             LogManager.logger.info(f"Exercise gui {gui_command} launched")
@@ -43,8 +43,8 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
         else:
             self.gui_server.kill()
             raise RuntimeError(f"Exercise GUI {gui_command} could not be run")
-
-        self.pause()
+        
+        self.running = True
 
     def _run_exercise_server(self, cmd, log_file, load_string, timeout: int = 5):
         process = subprocess.Popen(f"{cmd}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
@@ -69,34 +69,61 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
             LogManager.logger.debug(f"Message received from gui: {message[:30]}")
             self._process_gui_message(message)
         elif name == "exercise":  # message received from EXERCISE server
-            LogManager.logger.info(f"Message received from exercise: {message[:30]}")
+            LogManager.logger.info(f"Message received from exercise: {message}")
             self._process_exercise_message(message)
 
     def _process_gui_message(self, message):
-        command = message[:4]
         payload = json.loads(message[4:])
         self.update_callback(payload)
         self.gui_connection.send("#ack")
 
     def _process_exercise_message(self, message):
-        command = message[:4]
-        payload = json.loads(message[4:])
+        comand = message[:5]
+        if (message==comand):
+            payload = comand
+        else:
+            payload = json.loads(message[5:])
         self.update_callback(payload)
         self.exercise_connection.send("#ack")
-
+    
+    def call_service(self, service, service_type):
+        command = f"ros2 service call {service} {service_type}"
+        subprocess.call(f"{command}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
+                                   universal_newlines=True)
+    
     def run(self):
-        rosservice.call_service("gazebo/unpause_physics")
+        def send_freq():
+
+            while self.is_alive:
+                self.exercise_connection.send(
+                    """#freq{"brain": 20, "gui": 10, "rtf": 100}""")
+                time.sleep(1)
+
+        self.call_service("/unpause_physics","std_srvs/srv/Empty")
+        self.exercise_connection.send("#play")
+
+        daemon = Thread(target=send_freq, daemon=False,
+                        name='Monitor frequencies')
+        daemon.start()
+        
 
     def stop(self):
-        rosservice.call_service("gazebo/reset_world")
+        self.call_service("/pause_physics","std_srvs/srv/Empty")
+        self.call_service("/reset_world","std_srvs/srv/Empty")
+        self.exercise_connection.send("#rest")
 
     def resume(self):
-        rosservice.call_service("gazebo/unpause_physics")
+        self.call_service("/unpause_physics","std_srvs/srv/Empty")
+        self.exercise_connection.send("#play")
 
     def pause(self):
-        rosservice.call_service("gazebo/pause_physics")
+        self.call_service("/pause_physics","std_srvs/srv/Empty")
+        self.exercise_connection.send("#stop")
 
     def restart(self):
+        # pause_cmd = "ros2 service call /restart_simulation std_srvs/srv/Empty"
+        # subprocess.call(f"{pause_cmd}", shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT, bufsize=1024,
+        #                            universal_newlines=True)
         pass
 
     @property
@@ -104,7 +131,12 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
         return self.running
 
     def load_code(self, code: str):
-        self.exercise_connection.send(f"#code {code}")
+        errors = self.linter.evaluate_code(code)
+        if errors == "":
+            self.exercise_connection.send(f"#code {code}")
+        else:
+            raise Exception(errors)
+
 
     def terminate(self):
         self.running = False

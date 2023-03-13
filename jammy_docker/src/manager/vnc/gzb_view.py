@@ -1,14 +1,16 @@
-from vnc.vnc_server import Vnc_server
-from vnc.docker_thread import DockerThread
+from src.manager.vnc.vnc_server import Vnc_server
+from src.manager.vnc.docker_thread import DockerThread
 import subprocess
 import time
 
 class Gzb_view(Vnc_server):
     def __init__(self, display, internal_port, external_port):
         super().start_vnc(display, internal_port, external_port)
+        self.display = display
 
     def start_gzserver(self, exercise):
-        roslaunch_thread = DockerThread(exercise)
+        #roslaunch_thread = DockerThread(exercise)
+        roslaunch_thread = DockerThread(f"DISPLAY=:{self.display} gzserver")
         roslaunch_thread.start()
         repeat = True
         print('testing gz')
@@ -33,6 +35,7 @@ class Gzb_view(Vnc_server):
 
        
 	    # Write display config and start gzclient
-        gzclient_cmd = (f"export DISPLAY=:0;{exercise}" + "".join(gzclient_config_cmds) + "gzclient --verbose")
+        #gzclient_cmd = (f"export DISPLAY={self.display};{exercise}" + "".join(gzclient_config_cmds) + "gzclient --verbose")
+        gzclient_cmd = (f"export DISPLAY={self.display};" + "".join(gzclient_config_cmds) + "gzclient --verbose")
         gzclient_thread = DockerThread(gzclient_cmd)
         gzclient_thread.start() 

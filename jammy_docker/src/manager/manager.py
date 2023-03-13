@@ -5,19 +5,20 @@ import time
 import traceback
 from queue import Queue
 from uuid import uuid4
-from src.manager.vnc.docker_thread import DockerThread
+
 
 from transitions import Machine
 
+from src.comms.new_consumer import ManagerConsumer
 from src.ram_logging.log_manager import LogManager
 
 from src.comms.consumer_message import ManagerConsumerMessageException
 from src.libs.process_utils import get_class, get_class_from_file
 from src.manager.application.robotics_python_application_interface import IRoboticsPythonApplication
-from src.manager.launcher.launcher_engine import LauncherEngine
-from src.manager.vnc.console_view import Console_view
-from src.manager.vnc.gzb_view import Gzb_view
-from src.manager.lint.linter import Lint
+from src.manager.launcher.launcher import Launcher
+
+from src.manager.vnc.docker_thread import DockerThread
+import json
 
 
 class Manager:
@@ -33,18 +34,26 @@ class Manager:
         # Transitions for state idle
         {'trigger': 'connect', 'source': 'idle', 'dest': 'connected', },
         # Transitions for state connected
-        {'trigger': 'launch', 'source': 'connected', 'dest': 'ready', 'before': 'on_launch'},
+        {'trigger': 'launch', 'source': 'connected',
+            'dest': 'ready', 'before': 'on_launch'},
         # Transitions for state ready
-        {'trigger': 'terminate', 'source': 'ready', 'dest': 'connected', 'before': 'on_terminate'},
-        {'trigger': 'load', 'source': ['ready', 'running', 'paused'], 'dest': 'ready', 'before': 'load_code'},
-        {'trigger': 'run', 'source': 'ready', 'dest': 'running', 'conditions': 'code_loaded', 'after': 'on_run'},
+        {'trigger': 'terminate', 'source': 'ready',
+            'dest': 'connected', 'before': 'on_terminate'},
+        {'trigger': 'load', 'source': [
+            'ready', 'running', 'paused'], 'dest': 'ready', 'before': 'load_code'},
+        {'trigger': 'run', 'source': [
+            'ready', 'paused'], 'dest': 'running', 'conditions': 'code_loaded', 'after': 'on_run'},
         # Transitions for state running
-        {'trigger': 'stop', 'source': ['running', 'paused'], 'dest': 'ready', 'before': 'on_stop'},
-        {'trigger': 'pause', 'source': 'running', 'dest': 'paused', 'before': 'on_pause'},
+        {'trigger': 'pause', 'source': 'running',
+            'dest': 'paused', 'before': 'on_pause'},
+        {'trigger': 'stop', 'source': [
+            'running', 'paused'], 'dest': 'ready', 'before': 'on_stop'},
         # Transitions for state paused
         {'trigger': 'resume', 'source': 'paused', 'dest': 'running', 'before': 'on_resume'},
         # Global transitions
-        {'trigger': 'disconnect', 'source': '*', 'dest': 'idle' , 'before': 'on_disconnect'}
+        {'trigger': 'disconnect', 'source': '*',
+            'dest': 'idle', 'before': 'on_disconnect'},
+
     ]
 
     def __init__(self, host: str, port: int):
@@ -52,7 +61,6 @@ class Manager:
         self.exercise_id = None
         self.machine = Machine(model=self, states=Manager.states, transitions=Manager.transitions,
                                initial='idle', send_event=True, after_state_change=self.state_change)
-        from src.comms.new_consumer import ManagerConsumer
 
         self.queue = Queue()
 
@@ -60,12 +68,13 @@ class Manager:
         self.consumer = ManagerConsumer(host, port, self.queue)
         self.launcher = None
         self.application: IRoboticsPythonApplication = None
-        self.linter = None
 
     def state_change(self, event):
+
         LogManager.logger.info(f"State changed to {self.state}")
         if self.consumer is not None:
-            self.consumer.send_message({'state': self.state}, command="state-changed")
+            self.consumer.send_message(
+                {'state': self.state}, command="state-changed")
 
     def update(self, data):
         LogManager.logger.debug(f"Sending update to client")
@@ -78,7 +87,8 @@ class Manager:
         """
         def terminated_callback(name, code):
             # TODO: Prototype, review this callback
-            LogManager.logger.info(f"Manager: Launcher {name} died with code {code}")
+            LogManager.logger.info(
+                f"Manager: Launcher {name} died with code {code}")
             if self.state != 'ready':
                 self.terminate()
 
@@ -87,14 +97,13 @@ class Manager:
         # generate exercise_folder environment variable
         self.exercise_id = configuration['exercise_id']
         os.environ["EXERCISE_FOLDER"] = f"{os.environ.get('EXERCISES_STATIC_FILES')}/{self.exercise_id}"
-        self.linter = Lint(self.exercise_id)
 
         # Check if application and launchers configuration is missing
         # TODO: Maybe encapsulate configuration as a data class with validation?
         application_configuration = configuration.get('application', None)
         if application_configuration is None:
             raise Exception("Application configuration missing")
-
+        
         # check if launchers configuration is missing
         launchers_configuration = configuration.get('launch', None)
         if launchers_configuration is None:
@@ -102,21 +111,11 @@ class Manager:
 
         LogManager.logger.info(f"Launch transition started, configuration: {configuration}")
 
-        # configuration['terminated_callback'] = terminated_callback
-        self.launcher = LauncherEngine(**configuration)
+        #configuration['terminated_callback'] = terminated_callback
+        #TODO:create launcher with launcher configuration instead of hardcoded
+        self.launcher = Launcher(self.exercise_id)
         self.launcher.run()
 
-        # gzb_viewer = Gzb_view(":0", 5900, 6080)
-        # console_viewer = Console_view(":1", 5901, 1108)
-        # print('vnc started')
-        # time.sleep(2)
-        # console_viewer.start_console(1920, 1080)
-        # print("> Console started")
-
-        # gzb_viewer.start_gzserver(configuration["launch"]["0"]["launch_file"])
-        # gzb_viewer.start_gzclient(configuration["launch"]["0"]["launch_file"], 1920, 1080)
-
-       
         # TODO: launch application
         application_file = application_configuration['entry_point']
         params = application_configuration.get('params', None)
@@ -129,12 +128,15 @@ class Manager:
 
         params['update_callback'] = self.update
         self.application = application_class(**params)
+        time.sleep(1)
+        self.application.pause()
 
     def on_terminate(self, event):
         try:
             self.application.terminate()
+            self.__code_loaded = False
             self.launcher.terminate()
-        except Exception as e:
+        except Exception:
             LogManager.logger.exception(f"Exception terminating instance")
             print(traceback.format_exc())
 
@@ -146,20 +148,13 @@ class Manager:
         LogManager.logger.info(f"Start state entered, configuration: {configuration}")
 
     def load_code(self, event):
-        try:
-            LogManager.logger.info("Internal transition load_code executed")
-            message_data = event.kwargs.get('data', {})
-            errors = self.linter.evaluate_code(message_data['code'])
-
-            if errors is "":
-                self.application.load_code(message_data['code'])
-                self.__code_loaded = True
-            else:
-                raise Exception
-        except Exception as e:
-            self.__code_loaded = False
-        
-            self.consumer.send_message({'linter': errors}, command="linter")
+        self.application.pause()
+        self.__code_loaded = False
+        LogManager.logger.info("Internal transition load_code executed")
+        message_data = event.kwargs.get('data', {})
+        message_data = json.loads(message_data) # no se porque hoy hay que hacer esto y ayer no
+        self.application.load_code(message_data['code'])
+        self.__code_loaded = True
 
     def code_loaded(self, event):
         return self.__code_loaded
@@ -170,7 +165,8 @@ class Manager:
         self.consumer.send_message(message.response(response))
 
     def on_run(self, event):
-        self.application.run()
+        if self.code_loaded:
+            self.application.run()
 
     def on_pause(self, msg):
         self.application.pause()
@@ -182,7 +178,13 @@ class Manager:
         self.application.stop()
 
     def on_disconnect(self, event):
-        pass
+        try:
+            self.__code_loaded = False
+            self.launcher.terminate()
+            self.application.terminate()
+        except Exception as e:
+            LogManager.logger.exception(f"Exception terminating instance")
+            print(traceback.format_exc())
 
     def start(self):
         """
@@ -208,6 +210,7 @@ class Manager:
                     ex = ManagerConsumerMessageException(id=str(uuid4()), message=str(e))
                 self.consumer.send_message(ex)
                 LogManager.logger.error(e, exc_info=True)
+                print(ex)
                 
 
 if __name__ == "__main__":
