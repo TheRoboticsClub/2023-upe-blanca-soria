@@ -7,8 +7,8 @@ COPY ./worlds /home/ws/src/
 COPY ./display_conf /home/.display_conf
 
 # RAM and src directory muste be in / to execute correctly
-COPY ./simple_connection/src /src
-COPY ./simple_connection/src/manager/manager.py /
+COPY ./src /src
+COPY ./src/manager/manager.py /
 
 # copy scripts for vnc displays
 COPY ./scripts/start_vnc.sh /
@@ -29,8 +29,7 @@ RUN echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/ws/install/kobuki_de
 RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 
 # RoboticsAcademy
-#RUN cd /  && git clone https://github.com/JdeRobot/RoboticsAcademy.git -b master
-COPY ./RoboticsAcademy /RoboticsAcademy
+RUN cd /  && git clone https://github.com/JdeRobot/RoboticsAcademy.git -b master
 COPY ./.env /.env
 
 # Create exercise file for turtlebot ROS2
@@ -43,7 +42,7 @@ RUN sudo rosdep fix-permissions && rosdep update
 RUN rosdep install --from-paths src --ignore-src -r --rosdistro humble -y
 RUN colcon build --symlink-install
 
-# http server
+# Django server
 EXPOSE 8000
 
 # Manager websocket
