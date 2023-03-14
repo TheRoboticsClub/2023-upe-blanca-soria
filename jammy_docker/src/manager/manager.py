@@ -15,9 +15,9 @@ from src.ram_logging.log_manager import LogManager
 from src.comms.consumer_message import ManagerConsumerMessageException
 from src.libs.process_utils import get_class, get_class_from_file
 from src.manager.application.robotics_python_application_interface import IRoboticsPythonApplication
-from src.manager.launcher.launcher import Launcher
+from src.manager.launcher.launcher_engine import LauncherEngine
 
-from src.manager.vnc.docker_thread import DockerThread
+from src.manager.docker_thread.docker_thread import DockerThread
 import json
 
 
@@ -112,8 +112,8 @@ class Manager:
         LogManager.logger.info(f"Launch transition started, configuration: {configuration}")
 
         #configuration['terminated_callback'] = terminated_callback
-        #TODO:create launcher with launcher configuration instead of hardcoded
-        self.launcher = Launcher(self.exercise_id)
+        print("\n\n Launch CONF: ", launchers_configuration,"\n\n")
+        self.launcher = LauncherEngine(**configuration)
         self.launcher.run()
 
         # TODO: launch application
@@ -127,13 +127,13 @@ class Manager:
             raise Exception("The application must be an instance of IRoboticsPythonApplication")
 
         params['update_callback'] = self.update
-        self.application = application_class(**params)
+        #self.application = application_class(**params)
         time.sleep(1)
-        self.application.pause()
+        ##self.application.pause()
 
     def on_terminate(self, event):
         try:
-            self.application.terminate()
+            #self.application.terminate()
             self.__code_loaded = False
             self.launcher.terminate()
         except Exception:
@@ -148,12 +148,12 @@ class Manager:
         LogManager.logger.info(f"Start state entered, configuration: {configuration}")
 
     def load_code(self, event):
-        self.application.pause()
+        #self.application.pause()
         self.__code_loaded = False
         LogManager.logger.info("Internal transition load_code executed")
         message_data = event.kwargs.get('data', {})
         message_data = json.loads(message_data) # no se porque hoy hay que hacer esto y ayer no
-        self.application.load_code(message_data['code'])
+        #self.application.load_code(message_data['code'])
         self.__code_loaded = True
 
     def code_loaded(self, event):
@@ -166,22 +166,26 @@ class Manager:
 
     def on_run(self, event):
         if self.code_loaded:
-            self.application.run()
+            #self.application.run()
+            print("ON RUN")
 
     def on_pause(self, msg):
-        self.application.pause()
+        #self.application.pause()
+        print("ON PAUSE")
 
     def on_resume(self, msg):
-        self.application.resume()
+        #self.application.resume()
+        print("ON RESUME")
 
     def on_stop(self, msg):
-        self.application.stop()
+        #self.application.stop()
+        print("ON STOP")
 
     def on_disconnect(self, event):
         try:
             self.__code_loaded = False
             self.launcher.terminate()
-            self.application.terminate()
+            #self.application.terminate()
         except Exception as e:
             LogManager.logger.exception(f"Exception terminating instance")
             print(traceback.format_exc())

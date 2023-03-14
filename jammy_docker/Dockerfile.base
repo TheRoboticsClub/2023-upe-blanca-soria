@@ -39,6 +39,8 @@ RUN apt-get update && apt-get install -y \
   sudo \
   net-tools \
   && rm -rf /var/lib/apt/lists/* 
+
+RUN apt-get update && apt-get install -y alsa-utils alsa-oss
   
 # Install ROS2 and ROS packages
 RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg \
