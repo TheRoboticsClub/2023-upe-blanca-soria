@@ -32,7 +32,7 @@ RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 RUN cd /  && git clone https://github.com/JdeRobot/RoboticsAcademy.git -b master
 # Custom Robot Repository
 RUN mkdir -p /opt/jderobot && cd /opt/jderobot && \
-	git clone -b $ROS_DISTRO-devel https://github.com/JdeRobot/CustomRobots.git
+	git clone https://github.com/JdeRobot/CustomRobots.git -b noetic-devel
 # environment 
 COPY ./.env /.env
 
@@ -41,7 +41,7 @@ RUN mkdir -p /RoboticsAcademy/exercises/static/exercises/turtlebot2/web-template
 COPY ./scripts/web_template_turtlebot /RoboticsAcademy/exercises/static/exercises/turtlebot2/web-template
 
 # Create exercise file for followline ROS2
-RUN mkdir -p /RoboticsAcademy/exercises/static/exercises/followline_newmanager_ros2/web-template
+RUN mkdir -p /RoboticsAcademy/exercises/static/exercises/follow_line_newmanager_ros2/web-template
 COPY ./scripts/followline_ros2 /RoboticsAcademy/exercises/static/exercises/follow_line_newmanager_ros2/web-template
 
 # compile workspace

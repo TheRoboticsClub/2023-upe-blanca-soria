@@ -1,4 +1,6 @@
-import rospy
+import rclpy
+import sys
+
 import numpy as np
 import cv2
 import threading
@@ -17,7 +19,8 @@ class HAL:
 
     def __init__(self):
         print("HAL initializing", flush=True)
-        rospy.init_node("HAL")
+        rclpy.init(args=sys.argv)
+        rclpy.create_node('HAL')
 
         # Shared memory variables
         self.shared_image = SharedImage("halimage")
@@ -25,8 +28,8 @@ class HAL:
         self.shared_w = SharedValue("angular")
 
         # ROS Topics
-        self.camera = ListenerCamera("/F1ROS/cameraL/image_raw")
-        self.motors = PublisherMotors("/F1ROS/cmd_vel", 4, 0.3)
+        self.camera = ListenerCamera("/cam_f1_left/image_raw")
+        self.motors = PublisherMotors("/cmd_vel", 4, 0.3)
 
         self.start_time = 0
 

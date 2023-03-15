@@ -1,4 +1,3 @@
-import rospy
 from datetime import datetime
 
 class Lap:
@@ -56,7 +55,7 @@ class Lap:
 			if(threshold_crossed == False and self.buffer == True):
 				self.buffer = False
 
-			
+
 		return self.lap_time
 					
 	# Function to return lap time
