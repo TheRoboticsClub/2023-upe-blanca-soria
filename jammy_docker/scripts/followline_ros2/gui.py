@@ -18,11 +18,14 @@ from shared.image import SharedImage
 from shared.image import SharedImage
 from shared.value import SharedValue
 
+from lap import Lap
+from map import Map
+
 # Graphical User Interface Class
 class GUI:
     # Initialization function
     # The actual initialization
-    def __init__(self, host):
+    def __init__(self, host, circuit):
         rclpy.init()
         rclpy.create_node('GUI')
 
@@ -31,6 +34,9 @@ class GUI:
         self.client = None
         
         self.host = host
+        
+        # Circuit
+        self.circuit = circuit
 
         # Image variable host
         self.shared_image = SharedImage("guiimage")
@@ -38,6 +44,11 @@ class GUI:
         # Get HAL variables
         self.shared_v = SharedValue("velocity")
         self.shared_w = SharedValue("angular")
+        
+        # Create the lap object
+        pose3d_object = ListenerPose3d("/F1ROS/odom")
+        self.lap = Lap(pose3d_object)
+        self.map = Map(pose3d_object, self.circuit)
 
         # Event objects for multiprocessing
         self.ack_event = multiprocessing.Event()
@@ -62,6 +73,13 @@ class GUI:
         
         return payload
 
+    # Function for student to call
+    def showImage(self, image):
+        self.image_show_lock.acquire()
+        self.image_to_be_shown = image
+        self.image_to_be_shown_updated = True
+        self.image_show_lock.release()
+
     # Function to get the client
     # Called when a new client is received
     def get_client(self, client, server):
@@ -75,6 +93,16 @@ class GUI:
         # Payload Image Message
         payload = self.payloadImage()
         self.payload["image"] = json.dumps(payload)
+        
+        # Payload Lap Message
+        lapped = self.lap.check_threshold()
+        self.payload["lap"] = ""
+        if(lapped != None):
+            self.payload["lap"] = str(lapped)
+            
+        # Payload Map Message
+        pos_message = str(self.map.getFormulaCoordinates())
+        self.payload["map"] = pos_message
 
         # Payload V Message
         v_message = str(self.shared_v.get())
@@ -96,12 +124,10 @@ class GUI:
             self.ack_event.set()
         # Pause message
         elif(message[:5] == "#paus"):
-            #self.lap.pause()
-            print("#paus")
+            self.lap.pause()
         # Unpause message
         elif(message[:5] == "#resu"):
-            #self.lap.unpause()
-            print("#resu")
+            self.lap.unpause()
         # Reset message
         elif(message[:5] == "#rest"):
             self.reset_gui()
@@ -134,9 +160,8 @@ class GUI:
 
     # Function to reset
     def reset_gui(self):
-        #self.lap.reset()
-        #self.map.reset()
-        print("reset_gui")
+        self.lap.reset()
+        self.map.reset()
 
         
 
@@ -147,6 +172,8 @@ class ProcessGUI(multiprocessing.Process):
         super(ProcessGUI, self).__init__()
 
         self.host = sys.argv[1]
+        # Circuit
+        self.circuit = sys.argv[2]
 
         # Time variables
         self.time_cycle = SharedValue("gui_time_cycle")
@@ -163,7 +190,7 @@ class ProcessGUI(multiprocessing.Process):
     # Function to start the execution of threads
     def run(self):
         # Initialize GUI
-        self.gui = GUI(self.host)
+        self.gui = GUI(self.host, self.circuit)
         self.initialize_events()
 
         # Wait for client before starting
@@ -231,12 +258,10 @@ class ProcessGUI(multiprocessing.Process):
         self.gui.reset_gui()
     
     def lap_pause():
-        #self.gui.lap.pause()
-        print("self.gui.lap.pause")
+        self.gui.lap.pause()
     
     def lap_unpause():
-        #self.gui.lap.unpause()
-        print("self.gui.lap.unpause")
+        self.gui.lap.unpause()
 
 
 if __name__ == "__main__":

@@ -49,6 +49,11 @@ class Template:
 
         # Initialize the GUI and HAL behind the scenes
         self.hal = HAL()
+
+        self.exit_signal_teleop = threading.Event()
+        self.teleop_q = queue.Queue()
+        self.teleop = TeleopThread(self.teleop_q,self.exit_signal_teleop,self.hal)
+
         print("Exercise initialized", flush=True)
 
     # Function for saving
@@ -132,7 +137,7 @@ class Template:
         if code[0] == "" and code[1] == "":
             return
 
-        self.brain_process = BrainProcess(code, self.reload, self.stop_brain)
+        self.brain_process = BrainProcess(code, self.reload)
         self.brain_process.start()
         self.send_code_message()
 
@@ -166,6 +171,7 @@ class Template:
                 self.real_time_factor = stats_list[0].decode("utf-8")
 
     # Function to generate and send frequency messages
+
     def send_frequency_message(self):
         # This function generates and sends frequency measures of the brain and gui
         brain_frequency = 0
@@ -206,19 +212,46 @@ class Template:
     # The websocket function
     # Gets called when there is an incoming message from the client
     def handle(self, client, server, message):
-
-        if (message[:5] == "#freq"):
+        if(message[:5] == "#freq"):
             frequency_message = message[5:]
             self.read_frequency_message(frequency_message)
             self.send_frequency_message()
             return
         
-        elif (message[:5] == "#ping"):
+        elif(message[:5] == "#ping"):
             self.send_ping_message()
             return
         
-        elif (message[:5] == "#code"):
+        elif(message[:5] == "#tele"):
+            # Stop Brain code by sending an empty code
+            if not self.stop_brain.is_set():
+                self.reload.set()
+                self.stop_brain.set()
+                
+            # Parse message
+            teleop_message = message[5:]
+            v,w = self.read_teleop_message(teleop_message)
+            
+            # crear hebra de interacciones periódicas
+            # python thread
+            # Clear exit flag in order to continue executing the thread            
+            # envío última V y W recibida y me pongo a dormir
+            
+            # Recupero el flag
+            self.exit_signal_teleop.clear()
+            
+            if not self.teleop.is_alive():
+                self.teleop.start()
+            
+            self.teleop_q.put({"v":v,"w":w})
+            return
+
+        elif (message[:5] == "#code"):  
             try:
+                # First pause the teleoperator thread if exists
+                if self.teleop.is_alive():
+                    self.exit_signal_teleop.set()
+
                 # Once received turn the reload flag up and send it to execute_thread function
                 self.user_code = message
                 self.reload.set()
@@ -229,6 +262,7 @@ class Template:
 
         elif (message[:5] == "#stop"):
             self.stop_brain.set()
+            self.server.send_message(self.client, "#stpd")
 
         elif (message[:5] == "#play"):
             self.stop_brain.clear()
@@ -237,7 +271,6 @@ class Template:
             self.reload.set()
             self.stop_brain.set()
             self.execute_thread(self.user_code)
-
 
     # Function that gets called when the server is connected
     def connected(self, client, server):
@@ -253,13 +286,13 @@ class Template:
 
         # Initialize the ping message
         self.send_frequency_message()
-
+        
         print(client, 'connected')
 
     # Function that gets called when the connected closes
     def handle_close(self, client, server):
         print(client, 'closed')
-        
+
     def run_server(self):
         self.server = WebsocketServer(port=1905, host=self.host)
         self.server.set_fn_new_client(self.connected)

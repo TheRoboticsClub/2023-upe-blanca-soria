@@ -148,7 +148,7 @@ class BrainProcess(multiprocessing.Process):
             # Get the time period
             try:
             	# Division by zero
-                self.ideal_cycle.add(ms/self.iteration_counter)
+                self.ideal_cycle.add(ms / self.iteration_counter)
             except:
                 self.ideal_cycle.add(0)
             
