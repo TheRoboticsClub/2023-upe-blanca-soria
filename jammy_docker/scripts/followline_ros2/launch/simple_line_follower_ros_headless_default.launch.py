@@ -12,11 +12,7 @@ def generate_launch_description():
   # Set the path to the Gazebo ROS package
   pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')
 
-  # Set the path to this package.
-  launch_dir = '/RoboticsAcademy/exercises/static/exercises/follow_line_newmanager_ros2/web-template/launch/'
-  # Set the path to the world file
-  world_file_name = 'prototype_f1_circuit_game_headless_default.world'
-  world_path = os.path.join(launch_dir, world_file_name)
+  world_path = '/RoboticsAcademy/exercises/static/exercises/follow_line_newmanager_ros2/web-template/launch/prototype_f1_circuit_game_headless_default.world'
 
   ########### YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE ##############  
   # Launch configuration variables specific to simulation
