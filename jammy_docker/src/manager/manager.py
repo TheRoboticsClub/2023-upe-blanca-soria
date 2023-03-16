@@ -95,7 +95,10 @@ class Manager:
         configuration = event.kwargs.get('data', {})
 
         # generate exercise_folder environment variable
-        self.exercise_id = configuration['exercise_id']
+
+        # TODO: change configuration
+        #self.exercise_id = configuration['exercise_id']
+        self.exercise_id = configuration['exercise_id'] + '_ros2'
         os.environ["EXERCISE_FOLDER"] = f"{os.environ.get('EXERCISES_STATIC_FILES')}/{self.exercise_id}"
 
         # Check if application and launchers configuration is missing
@@ -112,7 +115,6 @@ class Manager:
         LogManager.logger.info(f"Launch transition started, configuration: {configuration}")
 
         #configuration['terminated_callback'] = terminated_callback
-        print("\n\n Launch CONF: ", launchers_configuration,"\n\n")
         self.launcher = LauncherEngine(**configuration)
         self.launcher.run()
 
@@ -127,13 +129,13 @@ class Manager:
             raise Exception("The application must be an instance of IRoboticsPythonApplication")
 
         params['update_callback'] = self.update
-        #self.application = application_class(**params)
+        self.application = application_class(**params)
         time.sleep(1)
-        ##self.application.pause()
+        self.application.pause()
 
     def on_terminate(self, event):
         try:
-            #self.application.terminate()
+            self.application.terminate()
             self.__code_loaded = False
             self.launcher.terminate()
         except Exception:
@@ -148,12 +150,11 @@ class Manager:
         LogManager.logger.info(f"Start state entered, configuration: {configuration}")
 
     def load_code(self, event):
-        #self.application.pause()
+        self.application.pause()
         self.__code_loaded = False
         LogManager.logger.info("Internal transition load_code executed")
         message_data = event.kwargs.get('data', {})
-        message_data = json.loads(message_data) # no se porque hoy hay que hacer esto y ayer no
-        #self.application.load_code(message_data['code'])
+        self.application.load_code(message_data['code'])
         self.__code_loaded = True
 
     def code_loaded(self, event):
@@ -166,26 +167,22 @@ class Manager:
 
     def on_run(self, event):
         if self.code_loaded:
-            #self.application.run()
-            print("ON RUN")
+            self.application.run()
 
     def on_pause(self, msg):
-        #self.application.pause()
-        print("ON PAUSE")
+        self.application.pause()
 
     def on_resume(self, msg):
-        #self.application.resume()
-        print("ON RESUME")
+        self.application.resume()
 
     def on_stop(self, msg):
-        #self.application.stop()
-        print("ON STOP")
+        self.application.stop()
 
     def on_disconnect(self, event):
         try:
             self.__code_loaded = False
             self.launcher.terminate()
-            #self.application.terminate()
+            self.application.terminate()
         except Exception as e:
             LogManager.logger.exception(f"Exception terminating instance")
             print(traceback.format_exc())

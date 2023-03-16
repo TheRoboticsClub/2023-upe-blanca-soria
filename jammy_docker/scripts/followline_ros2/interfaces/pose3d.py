@@ -160,7 +160,6 @@ class ListenerPose3d:
         Starts (Subscribes) the client.
 
         '''
-        #self.sub = rospy.Subscriber(self.topic, Odometry, self.__callback)
         self.sub = self.node.create_subscription(Odometry, self.topic, self.__callback,10)
 
         

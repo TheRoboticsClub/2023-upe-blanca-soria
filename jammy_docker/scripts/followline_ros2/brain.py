@@ -103,7 +103,6 @@ class BrainProcess(multiprocessing.Process):
         close_console()
         print("Current Thread Joined!", flush=True)
 
-
     # Function to generate the modules for use in ACE Editor
     def generate_modules(self):
         # Define HAL module

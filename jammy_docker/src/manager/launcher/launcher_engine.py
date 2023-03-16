@@ -18,12 +18,10 @@ class LauncherEngine(BaseModel):
         for key in keys:
             launcher_data = self.launch[key]
             launcher_type = launcher_data['type']
-            print("<launcher_engine.py:run():1>-- launcher_type:",launcher_type)
 
             # extend launcher data with
             # TODO: Review, maybe there's a better way to do this
             launcher_data["exercise_id"] = self.exercise_id
-            print("<launcher_engine.py:run()>:2--> launcher_data:",launcher_data)
 
             if launcher_type == "module":
                 launcher = self.launch_module(launcher_data)

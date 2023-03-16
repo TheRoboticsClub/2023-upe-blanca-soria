@@ -20,13 +20,5 @@
 	    <uri>model://simple_circuit</uri>
 	    <pose>0 0 0 0 0 0</pose>
     </include>
-    <include>
-      <uri>model://f1</uri>
-      <pose>53.462 -10.734 0.004 0 0 -1.57</pose>
-    </include>
-    <include>
-      <uri>model://f1_guest</uri>
-      <pose>-53.2 -6.8 0.004 0 0 -4.85</pose>
-    </include>
   </world>
 </sdf>

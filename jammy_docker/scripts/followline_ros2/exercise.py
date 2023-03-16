@@ -77,7 +77,6 @@ class Template:
         if(source_code[:5] == "#save"):
             source_code = source_code[5:]
             self.save_code(source_code)
-
             return "", ""
 
         elif(source_code[:5] == "#load"):
@@ -130,14 +129,14 @@ class Template:
                 pass
 
         # Turn the flag down, the iteration has successfully stopped!
+        
         self.reload.clear()
-
         # New thread execution
         code = self.parse_code(source_code)
         if code[0] == "" and code[1] == "":
             return
 
-        self.brain_process = BrainProcess(code, self.reload)
+        self.brain_process = BrainProcess(code, self.reload, self.stop_brain)
         self.brain_process.start()
         self.send_code_message()
 
@@ -246,7 +245,7 @@ class Template:
             self.teleop_q.put({"v":v,"w":w})
             return
 
-        elif (message[:5] == "#code"):  
+        elif (message[:5] == "#code"):
             try:
                 # First pause the teleoperator thread if exists
                 if self.teleop.is_alive():
@@ -255,7 +254,7 @@ class Template:
                 # Once received turn the reload flag up and send it to execute_thread function
                 self.user_code = message
                 self.reload.set()
-                self.stop_brain.set()
+                self.stop_brain.clear()
                 self.execute_thread(self.user_code)
             except:
                 pass
@@ -269,7 +268,7 @@ class Template:
 
         elif (message[:5] == "#rest"):
             self.reload.set()
-            self.stop_brain.set()
+            self.stop_brain.clear()
             self.execute_thread(self.user_code)
 
     # Function that gets called when the server is connected

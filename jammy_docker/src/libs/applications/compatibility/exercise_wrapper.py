@@ -100,8 +100,7 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
                 time.sleep(1)
 
         self.call_service("/unpause_physics","std_srvs/srv/Empty")
-        self.exercise_connection.send("#play")
-
+        #self.exercise_connection.send("#play")
         daemon = Thread(target=send_freq, daemon=False,
                         name='Monitor frequencies')
         daemon.start()
@@ -110,7 +109,7 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
     def stop(self):
         self.call_service("/pause_physics","std_srvs/srv/Empty")
         self.call_service("/reset_world","std_srvs/srv/Empty")
-        self.exercise_connection.send("#rest")
+        #self.exercise_connection.send("#rest")
 
     def resume(self):
         self.call_service("/unpause_physics","std_srvs/srv/Empty")
@@ -118,7 +117,7 @@ class CompatibilityExerciseWrapper(IRoboticsPythonApplication):
 
     def pause(self):
         self.call_service("/pause_physics","std_srvs/srv/Empty")
-        self.exercise_connection.send("#stop")
+        #self.exercise_connection.send("#stop")
 
     def restart(self):
         # pause_cmd = "ros2 service call /restart_simulation std_srvs/srv/Empty"

@@ -46,7 +46,7 @@ class GUI:
         self.shared_w = SharedValue("angular")
         
         # Create the lap object
-        pose3d_object = ListenerPose3d("/F1ROS/odom")
+        pose3d_object = ListenerPose3d("/odom")
         self.lap = Lap(pose3d_object)
         self.map = Map(pose3d_object, self.circuit)
 
@@ -70,7 +70,7 @@ class GUI:
         
         payload['image'] = encoded_image.decode('utf-8')
         payload['shape'] = shape
-        
+
         return payload
 
     # Function for student to call

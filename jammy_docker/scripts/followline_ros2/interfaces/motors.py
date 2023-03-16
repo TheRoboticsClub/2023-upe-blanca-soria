@@ -49,9 +49,7 @@ class PublisherMotors:
         self.node = rclpy.create_node('PublisherMotors')
         self.topic = topic
         self.data = CMDVel()
-        #self.pub = rospy.Publisher(self.topic, Twist, queue_size=1)
         self.pub = self.node.create_publisher(Twist, self.topic, 10 ) 
-        
         
         self.lock = threading.Lock()
 

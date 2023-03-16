@@ -31,7 +31,7 @@ RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 # RoboticsAcademy
 RUN cd /  && git clone https://github.com/JdeRobot/RoboticsAcademy.git -b master
 # Custom Robot Repository
-RUN mkdir -p /opt/jderobot && cd /opt/jderobot && \
+RUN mkdir -p /opt/jderobots && cd /opt/jderobots && \
 	git clone -b $ROS_DISTRO-devel https://github.com/JdeRobot/CustomRobots.git
 # environment 
 COPY ./.env /.env
