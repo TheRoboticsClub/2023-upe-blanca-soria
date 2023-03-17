@@ -1,5 +1,5 @@
 ---
-title: "Tercera Semana"
+title: "Docker con ROS-Noetic y VNC: Tercera Semana"
 date: 2023-02-16
 categories:
   - blog
@@ -7,6 +7,7 @@ tags:
   - Docker
   - HTML
   - CSS
+  - VNC
 ---
 Esta semana he estado jugando con los contenedores docker para crear una imagen con *ubuntu-focal:20.04* que contenga varias aplicaiones robóticas. En concreto el docker contiene ROS noetic, gazebo y rviz, además de los programas necesarios para la visualización del docker con VNC. Esta imagen se puede crear con el Dockerfile dentro del directorio `noetic-docker` de mi repositorio de prácticas: [noetic-docker](https://github.com/TheRoboticsClub/2023-upe-blanca-soria/tree/main/noetic_docker).
 

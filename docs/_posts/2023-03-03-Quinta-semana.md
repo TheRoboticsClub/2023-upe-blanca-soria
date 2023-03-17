@@ -1,8 +1,11 @@
 ---
-title: "Quinta semana"
+title: "Nuevo RAM en ROS2 con página simple: Quinta semana"
 date: 2023-02-16
 categories:
-  - blog
+  - HTML
+  - JavaScript
+  - RAM
+  - launch
 tags:
 ---
 
@@ -10,4 +13,4 @@ Esta semana he comenzado a introducir el nuevo RAM de RoboticsAcademy en mi dock
 
 Otro frente ha sido la comunicación con el manager, en JavaScript. He utilizado la API que se usa enla implementeción completa del frontend para poder comunicar mi html sencillo con el manager de la misma manera que lo hace la parte REACT de la implementación final. Esta API permite enviar y recbir mensajes con el manager y de momento he conseguido que, sustituyendo casi todas la lineas que hacen alguna fucnion real, el manager pueda moverse y transicionar por todos los estados, pudiendo subir un fichero de código y ejecutando un Linter que se encarga de la comprobacion sintactica del mismo. 
 
-A finales de semana he conseguido launchear el turtlebot junto con rviz2 , aunque este sin la configuración adecuada, y la consola en las vistas del html. La imagen docker está configuradad para ejecutar directamente `entrypoint.sh` pero para probar cosas en el video de demostración se ve como se lanza el manager manuelamente: [launching with manager](https://youtu.be/78ilM0IJZAI)
+A finales de semana he conseguido **launchear** el turtlebot junto con rviz2 , aunque este sin la configuración adecuada, y la consola en las vistas del html. La imagen docker está configuradad para ejecutar directamente `entrypoint.sh` pero para probar cosas en el video de demostración se ve como se lanza el manager manuelamente: [launching with manager](https://youtu.be/78ilM0IJZAI)
