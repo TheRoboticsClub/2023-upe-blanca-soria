@@ -58,7 +58,10 @@ Una configuración de ejemplo recibida en el manager seria:
 
 En el exercise.py he tenido que cambiar algun detalle para que todo funcione bien con la página oficial y se pueda visualizar correctamente el gui en la página.
 
-Para que todo esto funcione he hecho alguna trampilla para que se ejecute de manera correcta. No existe de momento un ejercicio en la página que este configurado para mandar la configuración específica en ROS2 por lo que dentro de manager.py y launcher_ros_api.py he tenido que añadir alguna modificación que cuando se mande correctamente la configuración habrá que quitar. El ejercicio nuevo se crea durante la creación de la imagen docker en `/RoboticsAcademy/exercises/static/esxercises/follow_line_newmanager_ros2` por lo que en manager.py cuando se establece la variable de entorno *$EXERCISE_FOLDER* se establece esta ruta. Por otro lado en el fichero .env he tenido que cambiar la ruta hacia los modelos de los robots, ya que en la rama **humble-devel** del repositorio CustomRobots la organizacion de los ficheros es distinta. Finalmente en launcher_ros_api.py he tenido que añadir al launcher_file de la configuracion un `.py` para qeu se dirija correctamente al fichero en cuestión.
+Para que todo esto funcione he hecho alguna trampilla para que se ejecute de manera correcta. No existe de momento un ejercicio en la página que este configurado para mandar la configuración específica en ROS2 por lo que dentro de manager.py y launcher_ros_api.py he tenido que añadir alguna modificación que cuando se mande correctamente la configuración habrá que quitar. El ejercicio nuevo se crea durante la creación de la imagen docker en `/RoboticsAcademy/exercises/static/esxercises/follow_line_newmanager_ros2` por lo que:
+- en manager.py cuando se establece la variable de entorno *$EXERCISE_FOLDER* se establece la ruta encima menscionada.
+- en el fichero .env he tenido que cambiar la ruta hacia los modelos de los robots, ya que en la rama **humble-devel** del repositorio CustomRobots la organizacion de los ficheros es distinta.
+- en launcher_ros_api.py he tenido que añadir al launcher_file de la configuracion un `.py` para qeu se dirija correctamente al fichero en cuestión.
 
 Con todo esto y algun otro detalle he conseguido el siguiente [resultado](https://youtu.be/KHQ2GiObIwc).
 

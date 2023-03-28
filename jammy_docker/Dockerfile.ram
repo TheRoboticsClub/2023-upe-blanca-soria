@@ -1,4 +1,4 @@
-FROM humble_base
+FROM my_humble_base
 
 # Turtlebot2 simulated and hospital world
 RUN mkdir -p /home/ws/src
