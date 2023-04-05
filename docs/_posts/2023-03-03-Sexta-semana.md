@@ -34,4 +34,4 @@ Para adaptar el funcionamiento de este nuevo RAM a ROS2 he tenido que cambiar:
 
 ## RESULTADO
 
-Finalmente he conseguido que se ejecute un código sencillo lanzado ya por el manager en mi página sencilla. Por lo que el resultado está ya funcionando destre de la rama *simple_connection* de mi repositorio. Es resultado en este [video](https://youtu.be/KHQ2GiObIwc).
+Finalmente he conseguido que se ejecute un código sencillo lanzado ya por el manager en mi página sencilla. Por lo que el resultado está ya funcionando destre de la rama *simple_connection* de mi repositorio. Es resultado en este [video](https://youtu.be/78ilM0IJZAI).
